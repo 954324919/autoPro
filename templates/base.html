@@ -1,0 +1,122 @@
+{% extends 'bootstrap/base.html' %}
+{%block styles%}
+     {{super() }}
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css" rel="stylesheet">
+  <link href="{{url_for('static',filename='sites.css')}}" rel="stylesheet">
+    <!--引入的公共外部css样式全部在这里定义-->
+    <link href="{{url_for('static',filename='index.css') }}" rel="stylesheet">
+    <link href="{{url_for('static',filename='jquery-ui-1.12.1/jquery-ui.css') }}" rel="stylesheet">
+  {%endblock styles%}
+{% block scripts %}
+    {{super()}} <!--引入的公共外部js文件全部在这里定义-->
+    <script src="{{url_for('static',filename='jquery-ui-1.12.1/jquery-ui.js')}}" ></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+{#      <script >#}
+{#        function allproject(){#}
+{#            window.location.replace("{{url_for('proControl.proListDetail')}}");#}
+{#        }#}
+{#        function dataControl(){#}
+{#            window.open("{{url_for('dataControl.index')}}");#}
+{#        }#}
+{#    </script>#}
+
+{%endblock scripts%}
+{% block navbar%}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">腾跃测试平台</a>
+        </div>
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="{{url_for('about')}}">平台介绍</a></li>
+{#            <li><a href="{{url_for('proControl.proListDetail')}}">项目管理</a></li>#}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">mock管理 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('about')}}">项目管理</a></li>
+                    <li><a href="{{ url_for('about')}}">mock列表</a></li>
+
+                    <li role="separator" class="divider"></li>
+                    <li><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list" onclick="allproject()">查看全部项目</span></button>
+
+                    </li>
+                </ul>
+            </li>
+            <li><a href="{{url_for('about')}}">mock管理</a></li>
+            <li><a href="{{url_for('about')}}">模块管理</a></li>
+            <li><a href="{{url_for('about')}}">用例管理</a></li>
+            <li><a href="javascript:void(0);" onclick="dataControl()">数据管理</a> </li>
+            <li><a href="#">报告管理</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">任务管理 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('about')}}">用例执行任务</a></li>
+                    <li><a href="{{ url_for('about')}}">jenkins集成任务</a></li>
+                    <li><a href="#">接口相关管理</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">其他任务</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Jacken_Chen3 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('about')}}">个人主页</a></li>
+                    <li><a href="{{ url_for('about')}}">我的项目</a></li>
+                    <li><a href="{{url_for('about')}}">修改密码</a></li>
+                    <li><a href="#">添加或修改权限</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">退出登录</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+{% endblock navbar%}
+{% block content%}
+<div class="all">
+    <div class="top"></div>
+    <div class="clear"></div>
+    <div class="main">
+
+        {%block mymain%}
+        {%endblock mymain%}
+
+        <div class="clear"></div>
+
+        <hr/>
+        <div class="beian">
+
+        版权所有：腾跃科技 - - 测试团队倾力打造<br />
+        特别鸣谢:Jacken_Chen3和他的小伙伴们   邮编：030024  电话：130-XXX-90 传真：0351-6580599  <br />
+        非经营性互联网信息服务审批号 （京）ICP备 05000475 &nbsp;&nbsp;<br />
+        </div>
+        <div class="footer-auto">
+            <p>
+                <a href="http://www.autohome.com.cn/about/index.html" target="_blank">关于我们</a>
+                <a href="http://www.autohome.com.cn/about/lianxi.html" target="_blank">联系我们</a>
+                <a href="http://autohome.hirede.com/" target="_blank">招贤纳士</a>
+                <span class="fline">|</span>
+                <a class="footios" href="http://app.autohome.com.cn/apps/main/1.html" target="_blank">iPhone客户端</a>
+                /<a href="http://app.autohome.com.cn/apps/main/1.html" target="_blank">iPad客户端</a>
+                <a class="footand" href="http://app.autohome.com.cn/apps/main/1.html" target="_blank">Android客户端</a>
+                <a class="footwp" href="http://app.autohome.com.cn/apps/main/1.html" target="_blank">WP客户端</a>
+                <a class="footphone" href="http://app.autohome.com.cn/apps/main/1.html" target="_blank">手机版</a>
+                <span class="fline">|</span>
+                <a class="footauto" href="http://weibo.com/qichezhijia" target="_blank">腾跃校长</a>
+                <span class="fline">|</span>
+                <a href="http://www.autohome.com.cn/bug/default.aspx" target="_blank">意见反馈</a>
+            </p>
+            <p>
+                <span class="footarial">@2014-2018 www.tengyue.com.cn AllRights Reserved.</span>
+                腾跃校长测试团队 版权所有
+            </p>
+            <p>
+                <div class="footer-img">地址:北京市海淀区天创科技大厦811B &nbsp;&nbsp;&nbsp; 联系电话/Tel:010-59857000/01/02</div>
+            </p>
+        </div>
+    </div>
+
+</div>
+{% endblock content%}

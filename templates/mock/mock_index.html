@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{%block styles%}
+    {{super()}}
+{%endblock styles%}
+{% block scripts %}
+    {{super()}}
+<script>
+$("#pubtable td").bind('click',function(){
+    if($('input').length>0){
+        $('input').parent().html($('input').val());
+    }
+    var current=$(this);
+    if(current.children('input').length>0){
+        return false;
+    }
+    var txt=current.html();
+    current.html('');
+    var inputObj=$("<input type='text'>").val(txt).appendTo(current);
+    inputObj.click(function(){return false;});
+
+});
+$(document).on("click",function(){
+        if($("#pubtable td input").length==0){
+        $("#pubtable td input").parent().html($("#pubtable td input").val());
+        }
+    });
+</script>
+{%endblock scripts%}
+
+{%block content%}
+    {{super()}}
+{%endblock content%}
+{%block mymain%}
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">进行添加操作</h4>
+            </div>
+            <div class="modal-body">这里是添加的主体body</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<div class="mybody">
+    <button type="button" class="btn btn-default btn-sm" data-target="#myModal" data-toggle="modal">
+    <span class="glyphicon glyphicon-plus"></span> 添加</button>
+    <button type="button" class="btn btn-default btn-sm" data-target="#myModal" data-toggle="modal">
+    <span class="glyphicon glyphicon-pencil"></span> 修改</button>
+    <button type="button" class="btn btn-default btn-sm" data-target="#myModal" data-toggle="modal">
+    <span class="glyphicon glyphicon-remove"></span> 删除</button>
+
+        <div class="maintop"></div><div class="clear"></div>
+        <ol class="breadcrumb">
+            <li style="list-style-type:none;"><a href="{{url_for('proControl.proListDetail')}}">全部项目</a></li>
+            <li style="list-style-type:none;"><a href="{{url_for('proControl.proListDetail')}}">汽车之家主软件app</a></li>
+            <li style="list-style-type:none;"><a href="{{url_for('proControl.proListDetail')}}">找车模块</a></li>
+            <li style="list-style-type:none;"><a href="{{url_for('proControl.proListDetail')}}">Android平台-5.9.0版本-登录询价-Grandchild 2</a></li>
+        </ol>
+<!--<button type="button" class="btn btn-primary btn-sm">搜索</button>-->
+<!--<button type="button" class="btn btn-success btn-sm">上传模块</button>-->
+        <!--<div class="maintop"></div> <div class="clear"></div>-->
+        <div class="breadcrumb">
+            用例ID:1<br/>
+            用例名称:testZhaocheregr274kltj8<br/>
+            用例说明:测试找车模块搜索功能,点击右上角按钮进入搜索界面,输入aodi <br/>
+            用例脚本源文件:<br/>
+            from appium webdriver
+            <button type="button" class="btn btn-primary btn-sm">保存修改</button>
+
+            <!--http://www.cnblogs.com/LingZi-0214/archive/2016/08/23/5799666.html -->
+            <div class="row-fluid">
+                <div class="span12">
+                    <table id="pubtable" class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>公共模块/用例名称</th><th>描述</th><th>api类别</th><th>控件名称(id/name/xpath等)</th><th>控件操作</th><th>校验/sendkeys/变量定义</th><th>标志</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>testZhaoche</td><td>用例名称</td><td>find_element_by_id</td><td>com.cubic.autohome/ceshi</td>
+                            <td>click</td><td>assertEqual="shanghai"</td><td>no</td>
+                        </tr>
+                        <tr class="success">
+                            <td>testZhaoche</td><td>用例名称</td><td>find_element_by_id</td><td>com.cubic.autohome/ceshi</td>
+                            <td>click</td><td>assertEqual="shanghai"</td><td>no</td>
+                        </tr>
+                        <tr class="error">
+                            <td>testZhaoche</td><td>用例名称</td><td>find_element_by_id</td><td>com.cubic.autohome/ceshi</td>
+                            <td>click</td><td>assertEqual="shanghai"</td><td>no</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>testZhaoche</td><td>用例名称</td><td>find_element_by_id</td><td>com.cubic.autohome/ceshi</td>
+                            <td>click</td><td>assertEqual="shanghai"</td><td>no</td>
+                        </tr>
+                        <tr class="info">
+                            <td>testZhaoche</td><td>用例名称</td><td>find_element_by_id</td><td>com.cubic.autohome/ceshi</td>
+                            <td>click</td><td>assertEqual="shanghai"</td><td>no</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-success btn-sm">添加</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{%endblock mymain%}

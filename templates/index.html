@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{%block styles%}
+    {{super()}}
+{%endblock styles%}
+{% block scripts %}
+    {{super()}}
+
+{%endblock scripts%}
+
+{%block content%}
+    {{super()}}
+{%endblock content%}
+{%block mymain%}
+<div class="maintop"></div><div class="clear"></div>
+<div class="mybody">
+<img src="{{ url_for('static',filename='img/timg.jpeg') }}" height="350px" width="600px">
+    <span><font size="6" color="#9acd32">&nbsp;&nbsp;腾跃校长，让办学不再困难</font></span>
+</div>
+<!-- 模态框（Modal） -->
+{#<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
+{#    <div class="modal-dialog">#}
+{#        <div class="modal-content">#}
+{#            <div class="modal-header">#}
+{#                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>#}
+{#                <h4 class="modal-title" id="myModalLabel">进行添加操作</h4>#}
+{#            </div>#}
+{#            <div class="modal-body">这里是添加的主体body</div>#}
+{#            <div class="modal-footer">#}
+{#                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>#}
+{#                <button type="button" class="btn btn-primary">提交</button>#}
+{#            </div>#}
+{#        </div><!-- /.modal-content -->#}
+{#    </div><!-- /.modal -->#}
+{#</div>#}
+{##}
+{#<div class="maintop"></div><div class="clear"></div>#}
+{#<div class="mybody">#}
+{#    <button type="button" class="btn btn-default btn-sm" data-target="#myModal" data-toggle="modal">#}
+{#    <span class="glyphicon glyphicon-plus"></span> 添加</button>#}
+{#    <button type="button" class="btn btn-default btn-sm" data-target="#myModal" data-toggle="modal">#}
+{#    <span class="glyphicon glyphicon-pencil"></span> 修改</button>#}
+{#    <button type="button" class="btn btn-default btn-sm" data-target="#myModal" data-toggle="modal">#}
+{#    <span class="glyphicon glyphicon-remove"></span> 删除</button>#}
+{##}
+{#    <div class="dropdown">#}
+{#    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">请选择搜索项目#}
+{#        <span class="caret"></span>#}
+{#    </button>#}
+{#    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">#}
+{#        <li role="presentation" class="dropdown-header">汽车之家主软件app</li>#}
+{#        <li role="presentation">#}
+{#            <a role="menuitem" tabindex="-1" href="#">汽车之家主软件app</a>#}
+{#        </li>#}
+{#        <li role="presentation">#}
+{#            <a role="menuitem" tabindex="-1" href="#">汽车之家主软件app</a>#}
+{#        </li>#}
+{#        <li role="presentation">#}
+{#            <a role="menuitem" tabindex="-1" href="#">汽车之家主软件app</a>#}
+{#        </li>#}
+{#        <li role="presentation" class="divider"></li>#}
+{#        <li role="presentation" class="dropdown-header">汽车之家主软件app</li>#}
+{#        <li role="presentation">#}
+{#            <a role="menuitem" tabindex="-1" href="#">汽车之家主软件app</a>#}
+{#        </li>#}
+{#    </ul>#}
+{#</div>#}
+{##}
+{#<div class="dropdown">#}
+{#    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">请选择项目版本#}
+{#        <span class="caret"></span>#}
+{#    </button>#}
+{#    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">#}
+{#        <li role="presentation" class="dropdown-header">汽车之家主软件app</li>#}
+{#        <li role="presentation">#}
+{#            <a role="menuitem" tabindex="-1" href="#">汽车之家主软件app</a>#}
+{#        </li>#}
+{#        <li role="presentation">#}
+{#            <a role="menuitem" tabindex="-1" href="#">汽车之家主软件app</a>#}
+{#        </li>#}
+{#        <li role="presentation">#}
+{#            <a role="menuitem" tabindex="-1" href="#">汽车之家主软件app</a>#}
+{#        </li>#}
+{#        <li role="presentation" class="divider"></li>#}
+{#        <li role="presentation" class="dropdown-header">汽车之家主软件app</li>#}
+{#        <li role="presentation">#}
+{#            <a role="menuitem" tabindex="-1" href="#">汽车之家主软件app</a>#}
+{#        </li>#}
+{#    </ul>#}
+{#</div>#}
+{##}
+{#        <div class="maintop"></div><div class="clear"></div>#}
+{#        <ol class="breadcrumb">#}
+{#            <li style="list-style-type:none;"><a href="{{url_for('about')}}">全部项目</a></li>#}
+{#            <li style="list-style-type:none;"><a href="{{url_for('about')}}">汽车之家主软件app</a></li>#}
+{#            <li style="list-style-type:none;"><a href="{{url_for('about')}}">找车模块</a></li>#}
+{#        </ol>#}
+{#<button type="button" class="btn btn-primary btn-sm">搜索</button>#}
+{#<button type="button" class="btn btn-success btn-sm">上传模块</button>#}
+{#<button type="button" class="btn btn-info btn-sm" onclick="dataControl()">数据管理</button>#}
+{#<table id="myTable" cellpadding="0" cellspacing="0" border="0" width="100%">#}
+{#    <thead><tr>#}
+{#            <td>功能编号</td>#}
+{#            <td>功能名称</td>#}
+{#            <td>备注</td>#}
+{#            <td>创建人</td>#}
+{#            <td>操作</td>#}
+{#        </tr></thead>#}
+{#    </table>#}
+{#    <div id="tree"></div>#}
+{#    </div>#}
+{%endblock mymain%}
