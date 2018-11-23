@@ -1,6 +1,6 @@
 #-*- coding= utf-8 -*-
 from flask import Flask,redirect,url_for
-from modules.mock import mock_api
+from mod import api
 #from config import DevelopmentConfig
 
 #app初始化工作 配置环境 实例化数据库模型  注册蓝图
@@ -11,6 +11,6 @@ def create_app(object_name):
     app.config['ALLOWED_EXTENSIONS']=set(['txt','pdf','png','jpg','jpeg','gif','docx','xls','xlsx','sql'])
     #app.config['UPLOAD_FOLDER']='templates/upload/'
     #db.init_app(app)
-    app.register_blueprint(mock_api,url_prefix='/mock_api')
+    app.register_blueprint(api,url_prefix='/api')
 
     return app
