@@ -4,29 +4,50 @@
 {% endblock %}
 {% block body_header %}
 <h2 class="page-header" id="case-title" data-url={{ url_path }}>新增用例</h2>
-{% endblock %}
+{% endblock body_header %}
+{% block scripts %}
+    {{ super() }}
+    <script>
+    $.ajax({
+        url:'/api/',
+        dataType:"json",
+        success:function(json){
+            //接口中存在pro_info层级，所以循环这个
+            for (var i=0;i<json.datas.pro_info.length;i++) {
+                {#alert(json.datas.pro_info[i].pro_name);#}
+                $("#select-pro").append("<option selected = \"selected\" value=1 >"+json.datas.pro_info[i].pro_name+"</option>");
+            }
+            for (var i=0;i<json.datas.ver_info.length;i++){
+                $("#select-ver").append("<option selected = \"selected\" value=1 >"+json.datas.ver_info[i].ver_name+"</option>");
+            }
+            for (var i=0;i<json.datas.mod_info.length;i++){
+                $("#select-mod").append("<option selected = \"selected\" value=1 >"+json.datas.mod_info[i].mod_name+"</option>");
+            }
+        }});
+    </script>
+{% endblock scripts %}
 {% block body %}
 <div class="panel-body">
     <div class="modal-form">
     <div class="form-item">
     <label class="form-label" >选择项目 <span class="required">*</span></label>
-        <select class="form-input" id="case-status">
-            <option selected = "selected" value=1 >启用</option>
-            <option  value=0 >禁用</option>
+        <select class="form-input" id="select-pro">
+{#            <option selected = "selected" value=1 >启用</option>#}
+{#            <option  value=0 >禁用</option>#}
         </select>
     </div>
     <div class="form-item">
     <label class="form-label" >选择版本 <span class="required">*</span></label>
-        <select class="form-input" id="case-status">
-            <option selected = "selected" value=1 >启用</option>
-            <option  value=0 >禁用</option>
+        <select class="form-input" id="select-ver">
+{#            <option selected = "selected" value=1 >启用</option>#}
+{#            <option  value=0 >禁用</option>#}
         </select>
     </div>
     <div class="form-item">
     <label class="form-label" >选择模块 <span class="required">*</span></label>
-        <select class="form-input" id="case-status">
-            <option selected = "selected" value=1 >启用</option>
-            <option  value=0 >禁用</option>
+        <select class="form-input" id="select-mod">
+{#            <option selected = "selected" value=1 >启用</option>#}
+{#            <option  value=0 >禁用</option>#}
         </select>
     </div>
         <div class="form-item">

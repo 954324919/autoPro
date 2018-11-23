@@ -7,7 +7,7 @@ def index():
     project=db_util.select_sql("select * from projects")
     version=db_util.select_sql("select * from versions")
     module=db_util.select_sql("select * from modules")
-    dict_items={"data":{}}
+    dict_items={"datas":{}}
     pro = {"pro_info": []}
     ver={"ver_info":[]}
     mod={"mod_info":[]}
@@ -37,6 +37,6 @@ def index():
         mod['mod_info'].append(get_item)
     pro.update(ver)
     mod.update(pro)
-    dict_items['data'] = mod
+    dict_items['datas'] = mod
     #print dict_items
     return json.dumps(dict_items,encoding='utf-8')
