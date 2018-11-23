@@ -2,10 +2,10 @@
 from __future__ import division
 import os,datetime
 import hashlib
-from sqlalchemy import Column,create_engine,Integer,String
-from sqlalchemy.types import CHAR,VARCHAR,DATETIME,Float
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+#from sqlalchemy import Column,create_engine,Integer,String
+#from sqlalchemy.types import CHAR,VARCHAR,DATETIME,Float
+#from sqlalchemy.orm import sessionmaker
+#from sqlalchemy.ext.declarative import declarative_base
 import pymysql
 '''
 #创建对象基类
@@ -102,5 +102,5 @@ def select_sql(sql):
     cursor.execute(sql)
     result=cursor.fetchall()
     return result
-h=select_sql("select * from user where id=2")
-print h
+#h=select_sql("select * from user where id=2")
+#print h
