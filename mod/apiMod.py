@@ -1,7 +1,9 @@
 #-*- coding= utf-8 -*-
 from . import api
 from modules.utils import db_util
-import json
+from flask import request
+import json,requests
+#获取项目信息
 @api.route('/')
 def index():
     project=db_util.select_sql("select * from projects")
@@ -40,3 +42,9 @@ def index():
     dict_items['datas'] = mod
     #print dict_items
     return json.dumps(dict_items,encoding='utf-8')
+@api.route('/post_inter',methods=['GET','POST'])  #提交添加接口
+def post_inter():
+    if request.method=='POST':
+        data=request.get_data()#获取post数据
+        print data
+    return data

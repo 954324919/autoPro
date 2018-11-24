@@ -8,6 +8,29 @@
 {% block scripts %}
     {{ super() }}
     <script>
+    function add_case(){
+        //获取项目名称、版本名称、模块名称
+        var pro_name=$("#select-pro").val();
+        var ver_name=$("#select-ver").val();
+        var mod_name=$("#select-mod").val();
+        var case_name=$("#case_name").val();
+        var case_loc=$("#case_loc").val(); //用例URL地址
+        var case_method=$("#case_method").val(); //接口请求方式
+        var req_data=$("#req_data").val(); //请求参数
+        var req_header=$("#req_header").val();// 请求header
+        var case_assert_type=$("#case_assert_type").val(); //响应校验方式
+        var res_expect=$("#res_expect").val(); //响应预期结果
+        $.ajax({
+            url:'/api/post_inter',
+            data:{"pro_name":pro_name,"ver_name":ver_name,"mod_name":mod_name,"case_name":case_name
+            ,"case_loc":case_loc,"case_method":case_method,"req_data":req_data
+            ,"req_header":req_header,"case_assert_type":case_assert_type,"res_expect":res_expect},
+            type:'POST',
+            success:function(data){
+                alert(data);
+            }
+        });
+    }
     $.ajax({
         url:'/api/',
         dataType:"json",
@@ -15,13 +38,17 @@
             //接口中存在pro_info层级，所以循环这个
             for (var i=0;i<json.datas.pro_info.length;i++) {
                 {#alert(json.datas.pro_info[i].pro_name);#}
-                $("#select-pro").append("<option selected = \"selected\" value=1 >"+json.datas.pro_info[i].pro_name+"</option>");
+                var pro_name=json.datas.pro_info[i].pro_name;
+                $("#select-pro").append("<option selected = \"selected\" value="+pro_name+" >"+pro_name+"</option>");
             }
+
             for (var i=0;i<json.datas.ver_info.length;i++){
-                $("#select-ver").append("<option selected = \"selected\" value=1 >"+json.datas.ver_info[i].ver_name+"</option>");
+                var ver_name=json.datas.ver_info[i].ver_name;
+                $("#select-ver").append("<option selected = \"selected\" value="+ver_name+" >"+ver_name+"</option>");
             }
             for (var i=0;i<json.datas.mod_info.length;i++){
-                $("#select-mod").append("<option selected = \"selected\" value=1 >"+json.datas.mod_info[i].mod_name+"</option>");
+                var mod_name=json.datas.mod_info[i].mod_name;
+                $("#select-mod").append("<option selected = \"selected\" value="+mod_name+" >"+mod_name+"</option>");
             }
         }});
     </script>
@@ -52,64 +79,67 @@
     </div>
         <div class="form-item">
             <label class="form-label" for="">用例标题：</label>
-            <input class="form-input" id="case-name" type="text" />
+            <input class="form-input" id="case_name" type="text" />
         </div>
         <div class="form-item">
             <label class="form-label" for="">接口URL地址:</label>
-            <input class="form-input" id="case-name" type="text" />
+            <input class="form-input" id="case_loc" type="text" />
         </div>
-        <div class="form-item">
-            <label class="form-label" for="">用例状态:</label>
-            <select class="form-input" id="case-status">
-                <option selected = "selected" value=1 >启用</option>
-                <option  value=0 >禁用</option>
-            </select>
-        </div>
+{#        <div class="form-item">#}
+{#            <label class="form-label" for="">用例状态:</label>#}
+{#            <select class="form-input" id="case-status">#}
+{#                <option selected = "selected" value=1 >启用</option>#}
+{#                <option  value=0 >禁用</option>#}
+{#            </select>#}
+{#        </div>#}
         <div class="form-item">
             <label class="form-label" for="">请求方式:</label>
-            <select class="form-input" id="case-status">
-                <option selected = "selected" value=1 >GET</option>
-                <option  value=0 >POST</option>
-                <option  value=1 >HEAD</option>
-                <option  value=0 >PUT</option>
-                <option  value=0 >DELETE</option>
-                <option  value=0 >OPTIONS</option>
+            <select class="form-input" id="case_method">
+                <option selected = "selected" value="GET" >GET</option>
+                <option  value="POST" >POST</option>
+                <option  value="HEAD" >HEAD</option>
+                <option  value="PUT" >PUT</option>
+                <option  value="DELETE" >DELETE</option>
+                <option  value="OPTIONS" >OPTIONS</option>
             </select>
         </div>
-        <div class="form-item">
-            <label class="form-label" for="">接口类型:</label>
-            <select class="form-input" id="case-status">
-                <option selected = "selected" value=1 >json</option>
-                <option  value=0 >key-value</option>
-                <option  value=1 >file</option>
-            </select>
-        </div>
+{#        <div class="form-item">#}
+{#            <label class="form-label" for="">接口类型:</label>#}
+{#            <select class="form-input" id="case-status">#}
+{#                <option selected = "selected" value=1 >json</option>#}
+{#                <option  value=0 >key-value</option>#}
+{#                <option  value=1 >file</option>#}
+{#            </select>#}
+{#        </div>#}
 {#        <div class="form-item">#}
 {#            <label class="form-label" for="" style="float: left;">用例描述：</label>#}
 {#            <textarea class="form-control form-area form-input" rows="4" id="case-desc" ></textarea>#}
 {#        </div>#}
     <div class="form-item add-api">
         <div class="api">
+{#            <div class="form-item">#}
+{#                <label>请求参数名称：</label>#}
+{#                <input class="form-input" id="case-name" type="text" />#}
+{#                </div>#}
             <div class="form-item">
-                <label>请求参数名称：</label>
-                <input class="form-input" id="case-name" type="text" />
-                </div>
+                <label>请求数据(ReqData),GET请求为param,POST为body：</label>
+                <textarea class="form-control form-area form-input" style="width: 834px" rows="6" name="req_data" id="req_data" ></textarea>
+            </div>
             <div class="form-item">
-                <label>请求数据(ReqData)：</label>
-                <textarea class="form-control form-area form-input" style="width: 834px" rows="6" name="req_data" ></textarea>
+                <label>请求Header：</label>
+                <textarea class="form-control form-area form-input" style="width: 834px" rows="6" name="req_header" id="req_header"></textarea>
             </div>
             <div class="form-item">
                 <label>响应数据校验方式：</label>
-                <select class="form-input" id="case-status">
-                    <option selected = "selected" value=1 >完整数据</option>
-                    <option  value=0 >只校验格式</option>
-                    <option  value=1 >校验key-value</option>
-                    <option  value=0 >数据库查询校验方式</option>
+                <select class="form-input" id="case_assert_type">
+                    <option selected="selected" value="只校验格式" >只校验格式</option>
+                    <option  value="校验key-value" >校验key-value</option>
+                    <option  value="数据库查询校验" >数据库查询校验方式</option>
                 </select>
             </div>
             <div class="form-item">
                 <label>预期响应数据：</label>
-                <textarea class="form-control form-area form-input" style="width: 834px" rows="6" name="req_data" ></textarea>
+                <textarea class="form-control form-area form-input" style="width: 834px" rows="6" name="res_expect" id="res_expect"></textarea>
             </div>
         </div>
     </div>
@@ -162,7 +192,7 @@
 
 
     <div class="my-modal-footer" style="float:left">
-        <input type="button" class="modal-btn modal-true-btn" id="case-submit-btn" value="确定"/>
+        <input type="button" class="modal-btn modal-true-btn" id="case-submit-btn" value="确定" onclick="add_case()"/>
         <input type="button" class="modal-btn modal-false-btn" id="case-cancel-btn" value="取消"/>
     </div>
     <!-- /.table-responsive -->

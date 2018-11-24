@@ -45,6 +45,7 @@ def root():
 @app.route('/add_inter')
 def add_inter():
     return render_template('autotest/add_case.html')
+
 @app.route('/inter_list')
 def inter_list():
     return render_template('autotest/api_zhdq.html')
