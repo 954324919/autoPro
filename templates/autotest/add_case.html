@@ -22,9 +22,11 @@
         var res_expect=$("#res_expect").val(); //响应预期结果
         $.ajax({
             url:'/api/post_inter',
-            data:{"pro_name":pro_name,"ver_name":ver_name,"mod_name":mod_name,"case_name":case_name
+            dataType:'json',
+            contentType:"application/json",
+            data:JSON.stringify({"datas":{ "pro_name":pro_name,"ver_name":ver_name,"mod_name":mod_name,"case_name":case_name
             ,"case_loc":case_loc,"case_method":case_method,"req_data":req_data
-            ,"req_header":req_header,"case_assert_type":case_assert_type,"res_expect":res_expect},
+            ,"req_header":req_header,"case_assert_type":case_assert_type,"res_expect":res_expect}}),
             type:'POST',
             success:function(data){
                 alert(data);

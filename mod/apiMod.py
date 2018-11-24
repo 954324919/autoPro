@@ -45,6 +45,13 @@ def index():
 @api.route('/post_inter',methods=['GET','POST'])  #提交添加接口
 def post_inter():
     if request.method=='POST':
+        #{"pro_name":项目名字,"ver_name":版本,"mod_name":模块,"case_name":用例名字
+        #,"case_loc":接口地址,"case_method":请求方式,"req_data":请求数据
+        #,"req_header":请求header,"case_assert_type":响应校验方式,"res_expect":预期响应结果}
         data=request.get_data()#获取post数据
-        print data
+        data_result=json.loads(data.decode('utf-8'))['datas']
+        pro_name=data_result['pro_name']
+        ver_name=data_result['ver_name']
+        mod_name=data_result['mode_name']
+
     return data
