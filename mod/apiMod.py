@@ -52,6 +52,20 @@ def post_inter():
         data_result=json.loads(data.decode('utf-8'))['datas']
         pro_name=data_result['pro_name']
         ver_name=data_result['ver_name']
-        mod_name=data_result['mode_name']
-
+        mod_name=data_result['mod_name']
+        case_name=data_result['case_name']
+        case_loc=data_result['case_loc']
+        case_method=data_result['case_method']
+        req_data=data_result['req_data']
+        req_header=data_result['req_header']
+        case_assert_type=data_result['case_assert_type']
+        res_expect=data_result['res_expect']
+        db=db_util.exec_sql("insert into projects (project_name) VALUES 'Saas项目组'")
+        print db
+        # print pro_name
+        # pro_id=db_util.select_sql("select id from projects where project_name="+pro_name)
+        # print pro_id
+        # db_util.exec_sql("insert into inter_info (url,req_method,url_name"
+        #                  "project_id,module_id,version_id) VALUES "
+        #                  +case_loc+case_method+case_name,)
     return data
