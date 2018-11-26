@@ -60,12 +60,23 @@ def post_inter():
         req_header=data_result['req_header']
         case_assert_type=data_result['case_assert_type']
         res_expect=data_result['res_expect']
-        db=db_util.exec_sql("insert into projects (project_name) VALUES 'Saas项目组'")
-        print db
+
         # print pro_name
-        # pro_id=db_util.select_sql("select id from projects where project_name="+pro_name)
-        # print pro_id
+        # print type(pro_name)
+        pro_id=db_util.one_sql("select id from projects where project_name='"+pro_name+"'")
+        ver_id=db_util.one_sql("select id from versions where version_name='"+ver_name+"'")
+        mod_id=db_util.one_sql("select id from modules where module_name='"+mod_name+"'")
         # db_util.exec_sql("insert into inter_info (url,req_method,url_name"
         #                  "project_id,module_id,version_id) VALUES "
         #                  +case_loc+case_method+case_name,)
+        #print "insert into inter_info (req_method,url,url_name,project_id,version_id,module_id) values ('" + case_method + "','" + case_name + "','" + str(pro_id[0]) + "','" + str(ver_id[0]) + "','"+ str(mod_id[0]) + "')"
+        #添加inter
+        result=db_util.one_sql("insert into inter_info (req_method,url,url_name,project_id,version_id,module_id) "
+                         +"values ('"+case_method+"','"+case_loc+"','"+case_name+"','"+str(pro_id[0])+"','"+str(ver_id[0])+"','"+str(mod_id[0])+"')")
+        #获取到插入成功的值
+        inter_id=db_util.get_one()
+        print inter_id
+        #添加param
+        result=db_util.exec_sql("insert into params(inter_id,header_param,param,param_body) values ('"+str(inter_id)+"','"+req_header+"','"+req_data+"','"+res_expect+"')")
+        print result
     return data

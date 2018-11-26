@@ -68,7 +68,7 @@ session=DBSession()
 # -*- coding:utf-8 -*-
 
 # 创建连接
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='chendaqian', db='ty_test')
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='chendaqian', db='ty_test',charset='utf8')
 # 创建游标
 cursor = conn.cursor()
 '''
@@ -95,12 +95,23 @@ def exec_sql(sql):
     effect_row = cursor.execute(sql)
 
     conn.commit()
-    cursor.close()
-    conn.close()
     return effect_row
 def select_sql(sql):
     cursor.execute(sql)
     result=cursor.fetchall()
     return result
-#h=select_sql("select * from user where id=2")
-#print h
+def get_one():
+    #获取自增长的id
+    result=cursor.lastrowid
+    return result
+def one_sql(sql):
+    cursor.execute(sql)
+    result=cursor.fetchone()
+    conn.commit()
+    #cursor.close()
+    #conn.close()
+    return result
+
+# h=select_sql("select * from projects")[2][2]
+# print h
+# print type(h)
