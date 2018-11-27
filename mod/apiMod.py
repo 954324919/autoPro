@@ -1,7 +1,7 @@
 #-*- coding= utf-8 -*-
 from . import api
 from modules.utils import db_util
-from flask import request
+from flask import request,jsonify
 import json,requests
 #获取项目信息
 @api.route('/')
@@ -75,8 +75,36 @@ def post_inter():
                          +"values ('"+case_method+"','"+case_loc+"','"+case_name+"','"+str(pro_id[0])+"','"+str(ver_id[0])+"','"+str(mod_id[0])+"')")
         #获取到插入成功的值
         inter_id=db_util.get_one()
-        print inter_id
+        #print inter_id
         #添加param
-        result=db_util.exec_sql("insert into params(inter_id,header_param,param,param_body) values ('"+str(inter_id)+"','"+req_header+"','"+req_data+"','"+res_expect+"')")
-        print result
+        result=db_util.exec_sql("insert into params(inter_id,header_param,param,param_body) values ('"+str(inter_id)+"','"+req_header+"','"+req_data+"','"+req_data+"')")
+        #print result
+        db_util.exec_sql("insert into inter_expect_res(inter_id,expect_res,res_assert_type) values ('"+str(inter_id)+"','"+res_expect+"','"+case_assert_type+"')")
     return data
+@api.route('/case_list',methods=['GET'])
+def case_list():
+    dict_items = {"datas": {}}
+    all_list={"case_list":[]} #这种类型创建列表
+    select="select * from inter_info order by id desc"
+
+
+    result=db_util.select_sql(select)
+    for i in result:
+        get_pro_name="select project_name from projects where id='"+str(i[6])+"'" #i[6] 表示project_id
+        get_ver_name="select version_name from versions where id='"+str(i[7])+"'" #i[7] 表示version_id
+        get_mod_name = "select module_name from modules where id='" + str(i[8]) + "'"  # i[8] 表示module_id
+        pro_name=db_util.one_sql(get_pro_name)[0]
+        ver_name = db_util.one_sql(get_ver_name)[0]
+        mod_name = db_util.one_sql(get_mod_name)[0]
+        #print pro_name,ver_name,mod_name
+        get_item={}
+        get_item["pro_name"]=pro_name
+        get_item["ver_name"]=ver_name
+        get_item["mod_name"]=mod_name
+        get_item['case_loc']=i[1] #接口全名
+        get_item['case_name']=i[3] #接口名字
+        all_list['case_list'].append(get_item)
+
+    dict_items['datas']=all_list
+    #print dict_items
+    return jsonify(dict_items)

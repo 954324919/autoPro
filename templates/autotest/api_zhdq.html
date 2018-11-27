@@ -119,11 +119,11 @@
                 <input class="form-input" id="name" style="width:200px;float: left;" type="text" />
             </div>
 
-            <h4 style="float: left;text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态:&nbsp;&nbsp;</h4>
-            <select class="form-control" style="width:100px;float: left;" id="status">
-                <option selected="selected">启用</option>
-                <option >禁用</option>
-            </select>
+{#            <h4 style="float: left;text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态:&nbsp;&nbsp;</h4>#}
+{#            <select class="form-control" style="width:100px;float: left;" id="status">#}
+{#                <option selected="selected">启用</option>#}
+{#                <option >禁用</option>#}
+{#            </select>#}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="api-apilist">查询</button>
         </div>
         <p>
@@ -152,7 +152,8 @@
     <!-- /.table-responsive -->
 </div>
 {% endblock %}
-{% block body_js %}
-<script src="/static/js/api_zhdq.js"></script>
-<script src="/static/js/apilist.js"></script>
+{% block scripts %}
+    {{ super() }}
+{#<script src="/static/js/api_zhdq.js"></script>#}
+<script src="/static/js/caselist.js"></script>
 {% endblock %}
