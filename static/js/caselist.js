@@ -25,7 +25,27 @@ $(function () {
                     }
                 }
 
-        })
+        });
+        //查询的列表
+        $.ajax({
+        url:'/api/',
+        dataType:"json",
+        success:function(json){
+            //接口中存在pro_info层级，所以循环这个
+            for (var i=0;i<json.datas.pro_info.length;i++) {
+                var pro_name=json.datas.pro_info[i].pro_name;
+                $("#select-pro").append("<option selected = \"selected\" value="+pro_name+" >"+pro_name+"</option>");
+            }
+
+            for (var i=0;i<json.datas.ver_info.length;i++){
+                var ver_name=json.datas.ver_info[i].ver_name;
+                $("#select-ver").append("<option selected = \"selected\" value="+ver_name+" >"+ver_name+"</option>");
+            }
+            for (var i=0;i<json.datas.mod_info.length;i++){
+                var mod_name=json.datas.mod_info[i].mod_name;
+                $("#select-mod").append("<option selected = \"selected\" value="+mod_name+" >"+mod_name+"</option>");
+            }
+        }});
     });
     // 局部查
     $('body').on('click','#api-apilist',function () {
