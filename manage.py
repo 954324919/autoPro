@@ -49,6 +49,15 @@ def add_inter():
 @app.route('/inter_list')
 def inter_list():
     return render_template('autotest/api_zhdq.html')
+@app.route('/add_scene')
+def add_scene():
+    return "test"
+@app.route('/task')
+def task():
+    return "task"
+@app.route('/task_list')
+def task_list():
+    return "task_list"
 @app.route('/hehe/<test>')
 def hh(test):
     conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='chendaqian', db='test1')
