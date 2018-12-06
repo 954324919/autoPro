@@ -1,0 +1,83 @@
+{% extends "base1.html" %}
+{% block head %}
+<link href="/static/less/apimodel.css" rel="stylesheet">
+{% endblock %}
+{% block window %}
+
+{% endblock %}
+
+
+{% block body_header %}
+<h2 class="page-header" id = "api-menu-project-id" data-id="10010-1">新增场景</h2>
+{% endblock %}
+{% block body %}
+<div class="panel-body">
+    <div class="table-responsive">
+        <div class="form-group" >
+            <h4 style="float: left;">所属项目:&nbsp;&nbsp;</h4>
+            <select class="form-control" style="width:200px;float: left;"  id="select-pro">
+{#                <option selected="selected" >Saas项目</option>#}
+            </select>
+            <h4 style="float: left;">&nbsp;&nbsp;&nbsp;所属版本:&nbsp;&nbsp;</h4>
+            <select class="form-control" style="width:200px;float: left;"  id="select-ver">
+{#                <option selected="selected">CRM1.0</option>#}
+            </select>
+            <h4 style="float: left;">&nbsp;&nbsp;&nbsp;所属模块:&nbsp;&nbsp;</h4>
+            <select class="form-control" style="width:200px;float: left;"  id="select-mod">
+{#                <option selected="selected">我的</option>#}
+            </select>
+
+            <h4 style="float: left;text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;API标题:&nbsp;&nbsp;</h4>
+            <div class="form-item">
+                <input class="form-input" id="name" style="width:200px;float: left;" type="text" />
+            </div>
+
+{#            <h4 style="float: left;text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态:&nbsp;&nbsp;</h4>#}
+{#            <select class="form-control" style="width:100px;float: left;" id="status">#}
+{#                <option selected="selected">启用</option>#}
+{#                <option >禁用</option>#}
+{#            </select>#}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="api-apilist">查询</button>
+        </div>
+        <p>
+            <button type="button" class="btn btn-info" id="add-api-link">新增</button>
+            <button type="button" class="btn btn-info" id="del-api-link">删除</button>
+        </p>
+
+    </div>
+    <!-- /.table-responsive -->
+</div>
+{#    style="display: none"#}
+    <div class="row" id="suite_data" >
+    <div class="col-md-1"></div>
+    <div class="col-md-3" style="padding: 0px">
+        <table class="table table-condensed table-bordered" style="background:#FFF;table-layout:fixed;" id='all_scene'>
+            <tr class="info"><td colspan="2" align='center'><b>全部用例</b></td></tr>
+            <tr class="info">
+                <td style="width:70%">用例名称</td>
+                <td style="width:30%">操作</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-1" style="padding: 0px"></div>
+    <div class="col-md-3" style="padding: 0px">
+        <table class="table table-condensed table-bordered" style="background:#FFF;table-layout:fixed;" id = 'my_scene'>
+            <tr class="info"><td colspan="2" align='center'><b>已添加用例</b></td></tr>
+            <tr class="info">
+                <td style="width:70%">用例名称</td>
+                <td style="width:30%">操作</td>
+                <!--
+                <td align='center'>
+                    <button class="btn btn-default" id="add">>></button>
+                </td>
+-->
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+<script src="/static/suite.js"></script>
+{% endblock %}

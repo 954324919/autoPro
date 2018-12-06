@@ -81,6 +81,7 @@ def post_inter():
         #print result
         db_util.exec_sql("insert into inter_expect_res(inter_id,expect_res,res_assert_type) values ('"+str(inter_id)+"','"+res_expect+"','"+case_assert_type+"')")
     return data
+#查询出全部接口列表
 @api.route('/case_list',methods=['GET'])
 def case_list():
     dict_items = {"datas": {}}
@@ -101,10 +102,32 @@ def case_list():
         get_item["pro_name"]=pro_name
         get_item["ver_name"]=ver_name
         get_item["mod_name"]=mod_name
-        get_item['case_loc']=i[1] #接口全名
+        get_item['case_loc']=i[1] #接口url
         get_item['case_name']=i[3] #接口名字
         all_list['case_list'].append(get_item)
 
     dict_items['datas']=all_list
     #print dict_items
     return jsonify(dict_items)
+#按照项目、版本、模块查询的接口列表
+@api.route('/case_select_list',methods=['GET'])
+def case_select_list():
+    dict_items={"datas":()}
+    all_list={"case_list":[]}
+    pro_id=request.args.get("pro_id")
+    ver_id=request.args.get("ver_id")
+    mod_id=request.args.get("mod_id")
+    sql="select * from inter_info where project_id='"+str(pro_id)+"' and version_id='"+str(ver_id)+"' and module_id='"+str(mod_id)+"'"
+    result=db_util.select_sql(sql)
+    for i in result:
+        get_item={}
+        inter_id=i[0] #接口id
+        case_loc=i[1] #接口url
+        case_name=i[3] #接口名字
+        get_item["inter_id"]=inter_id
+        get_item["case_loc"]=case_loc
+        get_item["case_name"]=case_name
+        all_list["case_list"].append(get_item)
+    dict_items['datas']=all_list
+    return jsonify(dict_items)
+

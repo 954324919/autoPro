@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9655e415-4b08-48da-870d-0c04f4fe1329" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/static/js/Transfer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/suite.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/autotest/add_scene.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/autotest/add_scene1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/utils/db_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/utils/db_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod/apiMod.py" beforeDir="false" afterPath="$PROJECT_DIR$/mod/apiMod.py" afterDir="false" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,23 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="create_app.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/create_app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-              <folding>
-                <element signature="e#23#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="apiMod.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mod/apiMod.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2200">
-              <caret line="103" column="27" selection-start-line="103" selection-start-column="27" selection-end-line="103" selection-end-column="27" />
+            <state relative-caret-position="2860">
+              <caret line="133" selection-start-line="133" selection-end-line="133" />
               <folding>
                 <element signature="e#23#40#0" expanded="true" />
               </folding>
@@ -55,35 +46,60 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sendEmail.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sendEmail.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-              <folding>
-                <element signature="e#43#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="51" column="24" lean-forward="true" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
+            <state relative-caret-position="358">
+              <caret line="53" column="47" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add_scene1.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/autotest/add_scene1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+              <folding>
+                <element signature="e#2135#3261#0#HTML" />
+                <element signature="e#4225#4260#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Transfer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/Transfer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#h3#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#h3#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="suite.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/suite.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="caselist.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/caselist.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1737">
+              <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -97,20 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base1.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base1.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="203" column="58" selection-start-line="203" selection-start-column="52" selection-end-line="203" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="caselist.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/caselist.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1034">
-              <caret line="47" column="12" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+            <state relative-caret-position="4268">
+              <caret line="194" column="37" selection-start-line="194" selection-start-column="37" selection-end-line="194" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -127,8 +134,8 @@
       <file leaf-file-name="db_util.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/utils/db_util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="112" column="17" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="17" />
+            <state relative-caret-position="2002">
+              <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
               <folding>
                 <element signature="e#23#54#0" expanded="true" />
               </folding>
@@ -153,6 +160,10 @@
       <find>API列表</find>
       <find>case-status</find>
       <find>select-pro</find>
+      <find>接口</find>
+      <find>全部</find>
+      <find>suite</find>
+      <find>transferContainer</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/static/vendor/morrisjs</dir>
@@ -188,13 +199,16 @@
         <option value="$PROJECT_DIR$/create_app.py" />
         <option value="$PROJECT_DIR$/templates/autotest/add_case.html" />
         <option value="C:/ProgramData/MySQL/MySQL Server 5.7/my.ini" />
-        <option value="$PROJECT_DIR$/mod/apiMod.py" />
         <option value="$PROJECT_DIR$/static/js/apilist.js" />
         <option value="$PROJECT_DIR$/templates/autotest/api_zhdq.html" />
         <option value="$PROJECT_DIR$/static/js/caselist.js" />
-        <option value="$PROJECT_DIR$/manage.py" />
         <option value="$PROJECT_DIR$/modules/utils/db_util.py" />
         <option value="$PROJECT_DIR$/templates/base1.html" />
+        <option value="$PROJECT_DIR$/mod/apiMod.py" />
+        <option value="$PROJECT_DIR$/static/suite.js" />
+        <option value="$PROJECT_DIR$/templates/autotest/add_scene.html" />
+        <option value="$PROJECT_DIR$/manage.py" />
+        <option value="$PROJECT_DIR$/templates/autotest/add_scene1.html" />
       </list>
     </option>
   </component>
@@ -210,7 +224,7 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="y" value="24" />
     <option name="width" value="1440" />
     <option name="height" value="799" />
   </component>
@@ -253,12 +267,6 @@
             <path>
               <item name="autoPro" type="b2602c69:ProjectViewProjectNode" />
               <item name="autoPro" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoPro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoPro" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -284,11 +292,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/static/js" />
       <recent name="$PROJECT_DIR$/templates/autotest" />
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/templates/mock" />
-      <recent name="$PROJECT_DIR$/static/img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -464,8 +472,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="799" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="24" width="1440" height="799" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -474,7 +481,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32905984" />
       <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3048433" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1595136" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17453505" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -510,34 +517,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/mock/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/mock/mock_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/sites.css">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -782,9 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding>
-            <element signature="e#23#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -792,9 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding>
-            <element signature="e#43#57#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -812,16 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mod/apiMod.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2200">
-          <caret line="103" column="27" selection-start-line="103" selection-start-column="27" selection-end-line="103" selection-end-column="27" />
-          <folding>
-            <element signature="e#23#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/autotest/add_case.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1364">
@@ -829,10 +792,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/caselist.js">
+    <entry file="file://$PROJECT_DIR$/templates/base1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1034">
-          <caret line="47" column="12" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+        <state relative-caret-position="4268">
+          <caret line="194" column="37" selection-start-line="194" selection-start-column="37" selection-end-line="194" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -843,30 +806,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="51" column="24" lean-forward="true" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/utils/db_util.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="112" column="17" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="17" />
+        <state relative-caret-position="2002">
+          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
           <folding>
             <element signature="e#23#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base1.html">
+    <entry file="file://$PROJECT_DIR$/mod/apiMod.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="203" column="58" selection-start-line="203" selection-start-column="52" selection-end-line="203" selection-end-column="58" />
+        <state relative-caret-position="2860">
+          <caret line="133" selection-start-line="133" selection-end-line="133" />
+          <folding>
+            <element signature="e#23#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/caselist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1737">
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/suite.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/autotest/add_scene.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="46" column="10" lean-forward="true" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <folding>
+            <element signature="e#2105#3231#0#HTML" />
+            <element signature="e#2220#2240#0#HTML" expanded="true" />
+            <element signature="e#2640#2660#0#HTML" expanded="true" />
+            <element signature="e#2694#2714#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="53" column="47" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/Transfer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#h3#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#h3#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/autotest/add_scene1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding>
+            <element signature="e#2135#3261#0#HTML" />
+            <element signature="e#4225#4260#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

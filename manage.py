@@ -51,7 +51,7 @@ def inter_list():
     return render_template('autotest/api_zhdq.html')
 @app.route('/add_scene')
 def add_scene():
-    return "test"
+    return render_template('autotest/add_scene1.html')
 @app.route('/task')
 def task():
     return "task"
