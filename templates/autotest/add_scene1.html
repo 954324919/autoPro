@@ -4,41 +4,7 @@
 {#    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">#}
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet">
-    <style type="text/css">
-    .transferBox {
-        height: 100%;
-        border: 1px solid #beb8b8;
-        border-radius: 6px;
-    }
-
-    .shuttleBtn {
-        height: 100%;
-    }
-
-    .transferBtn .btn {
-        display: block;
-    }
-
-    .transferBtn .btn:first-child {
-        margin-bottom: 20px;
-    }
-
-    .transferBtn .btnList {
-        position: absolute;
-        width: 80%;
-        top: 50%;
-        margin-top: -40px;
-    }
-
-    .transferBox .search {
-        width: 100%;
-    }
-
-    .transferBtn .btn-default {
-        background: #ccc;
-        cursor: no-drop;
-    }
-    </style>
+    <link href="/static/css/scene.css" rel="stylesheet">
 {% endblock %}
 {% block window %}
 
@@ -70,11 +36,6 @@
                 <input class="form-input" id="name" style="width:200px;float: left;" type="text" />
             </div>
 
-{#            <h4 style="float: left;text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态:&nbsp;&nbsp;</h4>#}
-{#            <select class="form-control" style="width:100px;float: left;" id="status">#}
-{#                <option selected="selected">启用</option>#}
-{#                <option >禁用</option>#}
-{#            </select>#}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="api-apilist">查询</button>
         </div>
         <p>
@@ -86,53 +47,48 @@
     <!-- /.table-responsive -->
 </div>
 {#    style="display: none"#}
-    <div class="row" id="suite_data" >
-    <div class="col-md-1"></div>
+{#    <div class="row" id="suite_data" >#}
+{#    <div class="col-md-1"></div>#}
+{#    <div class="col-md-3" style="padding: 0px">#}
+{#        <table class="table table-condensed table-bordered" style="background:#FFF;table-layout:fixed;" id='all_scene'>#}
+{#            <tr class="info"><td colspan="2" align='center'><b>全部用例</b></td></tr>#}
+{#            <tr class="info">#}
+{#                <td style="width:70%">用例名称</td>#}
+{#                <td style="width:30%">操作</td>#}
+{#            </tr>#}
+{#        </table>#}
+{#    </div>#}
+{#    <div class="col-md-1" style="padding: 0px"></div>#}
+{#    <div class="col-md-3" style="padding: 0px">#}
+{#        <table class="table table-condensed table-bordered" style="background:#FFF;table-layout:fixed;" id = 'my_scene'>#}
+{#            <tr class="info"><td colspan="2" align='center'><b>已添加用例</b></td></tr>#}
+{#            <tr class="info">#}
+{#                <td style="width:70%">用例名称</td>#}
+{#                <td style="width:30%">操作</td>#}
+
+{#            </tr>#}
+{#        </table>#}
+{#    </div>#}
+{#</div>#}
+
+
+<div class="row" >
+<div class="col-md-1"></div>
     <div class="col-md-3" style="padding: 0px">
-        <table class="table table-condensed table-bordered" style="background:#FFF;table-layout:fixed;" id='all_scene'>
-            <tr class="info"><td colspan="2" align='center'><b>全部用例</b></td></tr>
-            <tr class="info">
-                <td style="width:70%">用例名称</td>
-                <td style="width:30%">操作</td>
-            </tr>
-        </table>
-    </div>
-    <div class="col-md-1" style="padding: 0px"></div>
-    <div class="col-md-3" style="padding: 0px">
-        <table class="table table-condensed table-bordered" style="background:#FFF;table-layout:fixed;" id = 'my_scene'>
-            <tr class="info"><td colspan="2" align='center'><b>已添加用例</b></td></tr>
-            <tr class="info">
-                <td style="width:70%">用例名称</td>
-                <td style="width:30%">操作</td>
-                <!--
-                <td align='center'>
-                    <button class="btn btn-default" id="add">>></button>
-                </td>
--->
-            </tr>
-        </table>
+    <div id="transferContainer" class="row" style="height: 700px;width: 950px;"></div>
+
+{#    	中间点击按钮图标没显示出来没关系  是因为引入的cdn问题  正常下载引入bootstrap.css的话没问题<br>#}
+{#    	'getData' 内置方法  selectData是获取选中的数据 后面importUnitId 是收集的字段  如果需要收集多个字段就改为数组<br>#}
+{#		$('#transferContainer').transfer('getData', 'selectData', 'importUnitId')#}
+
+    <button id='btn' class="btn btn-primary">获取已选数据</button>
     </div>
 </div>
-
-
-
-    <div id="transferContainer" class="row" style="height: 700px;width: 950px;"></div>
-    <div>
-    	中间点击按钮图标没显示出来没关系  是因为引入的cdn问题  正常下载引入bootstrap.css的话没问题<br>
-    	'getData' 内置方法  selectData是获取选中的数据 后面importUnitId 是收集的字段  如果需要收集多个字段就改为数组<br>
-		$('#transferContainer').transfer('getData', 'selectData', 'importUnitId')
-    </div>
-	<h3>数据在后台 coonsole中查看</h3>
-    <button id='btn' class="btn btn-primary">获取已选数据</button>
+</div>
 {% endblock %}
 {% block scripts %}
     {{ super() }}
 <script src="/static/suite.js"></script>
-
-
-
-    <!-- 中间点击按钮图标没显示出来没关系  是因为引入的cdn问题  正常下载引入bootstrap.css的话没问题的 -->
-<!-- 此处演示的数据源为一个 用falg去区分在哪个里面 -->
 
 {#    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>#}
 {#<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
@@ -144,7 +100,7 @@
 var data = [{
 
         "importUnitId": "950258484706803712",
-        "importUnitName": "分数对比2016",
+        "importUnitName": "caca",
         "flag": false,
 
     },
@@ -173,11 +129,12 @@ var data = [{
         "importUnitName": "对比88",
         "flag": true,
     }
+
 ]
 
 
 $('#transferContainer').transfer({
-    titles: ['待选对比档案', '已选对比档案'],
+    titles: ['所有可选接口列表', '已选择的接口列表'],
     search: true,
     uniqueId: "importUnitId",//唯一id
     dataSource: data,
@@ -189,7 +146,7 @@ $('#transferContainer').transfer({
         },
         {
             field: 'importUnitName',
-            title: '档案名称'
+            title: '选择所有接口'
         }
     ]
 });
@@ -197,7 +154,7 @@ $('#transferContainer').transfer({
 $('#btn').click(function(){
 	var data= $('#transferContainer').transfer('getData', 'selectData', 'importUnitId');
 	console.log(data)
-})
+});
 
 
 </script>
