@@ -1,10 +1,12 @@
 //页面加载时运行
 $(function(){
     //查询的列表
+     var test="";
         $.ajax({
         url:'/api/',
         dataType:"json",
         success:function(json){
+            test=json.datas;  //将数据保存到变量里边使用
             //接口中存在pro_info层级，所以循环这个
             for (var i=0;i<json.datas.pro_info.length;i++) {
                 var pro_name=json.datas.pro_info[i].pro_name;
@@ -25,8 +27,124 @@ $(function(){
         if($(this).val()!='none'){alert("test");}
         var te=$(this).val();
         //alert(te);
-    })
+    });
+
+    //根据pro_id 和ver_id 和mod_id进行查找
+    $('#api-apilist').click(function(){
+        var trans_list=new Array();
+        var item={};
+
+    var pro_name=$('select#select-pro').val();
+    var ver_name=$('select#select-ver').val();
+    var mod_name=$('select#select-mod').val();
+    var pro_id=0;
+    var ver_id=0;
+    var mod_id=0;
+    //test表示从上边的接口中获取到的数据
+    for (var i=0;i<test.pro_info.length;i++){
+        if(pro_name==test.pro_info[i].pro_name){
+            pro_id=test.pro_info[i].pro_id;
+            break
+        }
+    }
+    for (var i=0;i<test.ver_info.length;i++){
+        if(ver_name==test.ver_info[i].ver_name){
+            ver_id=test.ver_info[i].ver_id;
+            break
+        }
+    }
+    for (var i=0;i<test.mod_info.length;i++){
+        if(mod_name==test.mod_info[i].mod_name){
+            mod_id=test.mod_info[i].mod_id;
+            break
+        }
+    }
+
+
+    $.get('/api/case_select_list',{pro_id:pro_id,ver_id:ver_id,mod_id:mod_id},
+        function(data){
+        for (var i=0;i<data.datas.case_list.length;i++){
+                item['importUnitId']=data.datas.case_list[i].inter_id;
+                item['importUnitName']=data.datas.case_list[i].case_name;
+                item['flag']=false;
+                trans_list.push(item);
+            }
+
+        $('#transferContainer').transfer('refresh', trans_list);
+        });
+
+
 });
+//创建穿梭框
+    $('#transferContainer').transfer({
+    titles: ['所有可选接口列表', '已选择的接口列表'],
+    search: true,
+    uniqueId: "importUnitId",//唯一id
+    dataSource: null,
+    maxSelect: 6,
+    diffKey: 'flag',
+    unselectColumns: [{
+            field: 'flag',
+            checkbox: true
+        },
+        {
+            field: 'importUnitName',
+            title: '选择所有接口'
+        }
+    ]
+});
+    });
+
+
+    //     [{
+    //
+    //     "importUnitId": "950258484706803712",
+    //     "importUnitName": "caca",
+    //     "flag": false,
+    //
+    // },
+    // {
+    //     "importUnitId": "949202813861232640",
+    //     "importUnitName": "对比1",
+    //     "flag": false,
+    // },
+    // {
+    //     "importUnitId": "948380218236600320",
+    //     "importUnitName": "测试2",
+    //     "flag": false,
+    // },
+    // {
+    //     "importUnitId": "946590730653007872",
+    //     "importUnitName": "对比4",
+    //     "flag": false,
+    // },
+    // {
+    //     "importUnitId": "946590730653007889",
+    //     "importUnitName": "对比954",
+    //     "flag": true,
+    // },
+    // {
+    //     "importUnitId": "946590730653008647",
+    //     "importUnitName": "对比88",
+    //     "flag": true,
+    // }
+    //
+    // ]
+
+//点击选择完成之后的按钮
+$('#btn').click(function(){
+	// var data= $('#transferContainer').transfer('getData', 'selectData', 'importUnitId');
+	// console.log(data)
+    var h1=document.getElementById('transferContainer');
+    var h2=document.getElementById('sence_data');
+    if(h1.style.display=='none'){
+        h1.style.display='block';
+        h2.style.display='none';
+    }else{
+        h1.style.display='none';
+        h2.style.display='block';
+    }
+    });
 // //页面加载时运行
 // $(function(){
 //     //选择项目时，动态加载该项目下的所有测试套
