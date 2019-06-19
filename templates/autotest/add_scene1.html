@@ -5,6 +5,7 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet">
     <link href="/static/css/scene.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/layui/css/layui.css"  media="all">
 {% endblock %}
 {% block window %}
 
@@ -71,108 +72,209 @@
 {#    </div>#}
 {#</div>#}
 
+    <!--layui 穿梭框-->
+    <div class="row">
+    <div class="col-md-1"></div><div id="test7" class="demo-transfer" style="display:block"></div>
 
-<div class="row" >
-<div class="col-md-1"></div>
-    <div class="col-md-3" style="padding: 0px">
-    <div id="transferContainer" class="row" style="height: 700px;width: 950px;display: block"></div>
-
-{#    	中间点击按钮图标没显示出来没关系  是因为引入的cdn问题  正常下载引入bootstrap.css的话没问题<br>#}
-{#    	'getData' 内置方法  selectData是获取选中的数据 后面importUnitId 是收集的字段  如果需要收集多个字段就改为数组<br>#}
-{#		$('#transferContainer').transfer('getData', 'selectData', 'importUnitId')#}
-
-
-    </div>
-
+    <div class="col-md-1"></div>
+<div class="layui-btn-container">
+  <button type="button" class="layui-btn" lay-demotransferactive="getData">获取右侧数据</button>
+  <button type="button" class="layui-btn" lay-demotransferactive="reload">重载实例</button>
 </div>
 
 
-
-
-
-
-
+    </div>
+<!--layui穿梭框-->
 
 <div class="row" id="sence_data" style="display:none">
     <div class="col-md-1"></div>
-    <div class="col-md-10" style="padding: 0px">
-    <div style="padding:0px 17px 0px 0px">
-        <table class="table table-condensed table-bordered" style="background:#FFF;table-layout:fixed;margin:0px" id="header">
-            <tr class="info" id=-1>
-                <td style="width:5%"><b>执行顺序</b></td>
-                <td style="width:10%"><b>接口名称</b></td>
-                <td style="width:20%"><b>请求参数 ( json格式 )</b></td>
-                <td style="width:20%"><b>校验参数 ( json格式 )</b></td>
-                <td style="width:10%"><b>中间变量 (多个,分隔)</b></td>
-                <td style="width:10%"><b>备注</b></td>
-                <td style="width:5%"><b>准备时间(s)</b></td>
-                <td style="width:10%"><b>调试结果</b></td>
-                <td align='center'>
-                    <button class="btn btn-danger" id="zmd">提交修改</button>
-                    <button class="btn btn-success" id="n" style="padding:0px 8px"><font size="4">+</font> </button>
-                </td>
-            </tr>
-        </table>
-    </div>
+    输入场景名称：<input type="text" id="scene_name">
     <div style="height:540px;overflow-y:auto;overflow-x:hidden;" id='d'>
-      <table class="table table-condensed table-bordered" id="data" style="background:#FFF;table-layout:fixed;margin:0px;">
-          <tr class="info" id='case_params' style="display:none">
+      <table class="table table-condensed table-bordered" id="table_info" style="background:#FFF;table-layout:fixed;margin:0px;">
+
+          <tr class="info" id='case_params'>
               <td style="width:5%"><b>执行顺序</b></td>
                 <td style="width:10%"><b>接口名称</b></td>
-                <td style="width:20%"><b>请求参数 ( json格式 )</b></td>
-                <td style="width:20%"><b>校验参数 ( json格式 )</b></td>
                 <td style="width:10%"><b>中间变量 (多个,分隔)</b></td>
                 <td style="width:10%"><b>备注</b></td>
-                <td style="width:5%"><b>准备时间(s)</b></td>
-                <td style="width:10%"><b>调试结果</b></td>
-                <td align='center'>
-                    <button class="btn btn-danger" id="zmd">提交修改</button>
-                    <button class="btn btn-success" id="n" style="padding:0px 8px"><font size="4">+</font> </button>
-                </td>
+
           </tr>
 
-
-          <tr class="info">
-              <td style="width:5%"><b>执行顺序</b></td>
-                <td style="width:10%"><b>接口名称</b></td>
-                <td style="width:20%"><b>请求参数 ( json格式 )</b></td>
-                <td style="width:20%"><b>校验参数 ( json格式 )</b></td>
-                <td style="width:10%"><b>中间变量 (多个,分隔)</b></td>
-                <td style="width:10%"><b>备注</b></td>
-                <td style="width:5%"><b>准备时间(s)</b></td>
-                <td style="width:10%"><b>调试结果</b></td>
-                <td align='center'>
-                    <button class="btn btn-danger" id="zmd">提交修改</button>
-                    <button class="btn btn-success" id="n" style="padding:0px 8px"><font size="4">+</font> </button>
-                </td>
-          </tr>
+{#          <tr class="info">#}
+{#              <td style="width:5%"><b>执行顺序</b></td>#}
+{#                <td style="width:10%"><b>接口名称</b></td>#}
+{#                <td style="width:20%"><b>请求参数 ( json格式 )</b></td>#}
+{#                <td style="width:20%"><b>校验参数 ( json格式 )</b></td>#}
+{#                <td style="width:10%"><b>中间变量 (多个,分隔)</b></td>#}
+{#                <td style="width:10%"><b>备注</b></td>#}
+{#                <td style="width:5%"><b>准备时间(s)</b></td>#}
+{#                <td style="width:10%"><b>调试结果</b></td>#}
+{#                <td align='center'>#}
+{#                    <button class="btn btn-danger" id="zmd">提交修改</button>#}
+{#                    <button class="btn btn-success" id="n" style="padding:0px 8px"><font size="4">+</font> </button>#}
+{#                </td>#}
+{#          </tr>#}
       </table>
+        <button class="btn btn-danger" onclick="submit_scene()">提交</button>
     </div>
     </div>
 
 </div>
 
-
-    <div class="col-md-1"></div>
-    <button id='btn' class="btn btn-primary">获取已选数据</button>
 {% endblock %}
 {% block scripts %}
     {{ super() }}
 <script src="/static/suite.js"></script>
 
-{#    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 {#<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
 <script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="static/js/Transfer.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="/static/layui/layui.js" charset="utf-8"></script>
+<script>
 
-<script type="text/javascript">
+    //保存场景
+    function submit_scene() {
+        var my_table=document.getElementById("table_info");
+        var data=[];
+        var my_rows=my_table.rows.length;
+        for(var i=1;i<my_rows;i++){
+            var scene_item_id=my_table.rows[i].cells[0].innerHTML;
+            var inter_name=my_table.rows[i].cells[1].innerHTML;
+            var text1=my_table.rows[i].cells[2].getElementsByTagName("textarea");
+            var interm=text1[0].value;
+            var 
+            alert(interm);
+            //for(var j=1;j<my_table.rows[i].cells.length; j++){
+            //    alert(my_table.rows[i].cells[j].innerHTML);
+            //}
+        }
+    }
+    //实例调用
+    var geting={
+        hehe:function loadData() {
+        var data3;
+      $.ajax({
+          url: '/api/all_case',
+          type: 'get',
+          async: false,
+          dataType: 'json',
+          success: function (obj) {
+              data3 = JSON.stringify(obj);
+          }
+      });
+      return data3;
+  }};
+
+layui.use(['transfer', 'layer', 'util'], function(){
+  var $ = layui.$
+  ,transfer = layui.transfer
+  ,layer = layui.layer
+  ,util = layui.util;
+
+  //模拟数据
+  var data1 = [
+    {"value": "1", "title": "李白"}
+    ,{"value": "2", "title": "杜甫"}
+    ,{"value": "3", "title": "苏轼"}
+    ,{"value": "4", "title": "李清照"}
+    ,{"value": "5", "title": "鲁迅", "disabled": true}
+    ,{"value": "6", "title": "巴金"}
+    ,{"value": "7", "title": "冰心"}
+    ,{"value": "8", "title": "矛盾"}
+    ,{"value": "9", "title": "贤心"}
+  ]
+
+  ,data2 = [
+    {"value": "1", "title": "瓦罐汤"}
+    ,{"value": "2", "title": "油酥饼"}
+    ,{"value": "3", "title": "炸酱面"}
+    ,{"value": "4", "title": "串串香", "disabled": true}
+    ,{"value": "5", "title": "豆腐脑"}
+    ,{"value": "6", "title": "驴打滚"}
+    ,{"value": "7", "title": "北京烤鸭"}
+    ,{"value": "8", "title": "烤冷面"}
+    ,{"value": "9", "title": "毛血旺", "disabled": true}
+    ,{"value": "10", "title": "肉夹馍"}
+    ,{"value": "11", "title": "臊子面"}
+    ,{"value": "12", "title": "凉皮"}
+    ,{"value": "13", "title": "羊肉泡馍"}
+    ,{"value": "14", "title": "冰糖葫芦", "disabled": true}
+    ,{"value": "15", "title": "狼牙土豆"}
+  ];
 
 
 
+  transfer.render({
+    elem: '#test7'
+    ,data:JSON.parse(geting.hehe()) //ps：这里很关键！！  传过来的数据是字符串，要转成object对象
+    ,id: 'key123' //定义唯一索引
+    ,showSearch: true
+    ,width:450
+  });
+  //批量办法定事件
+  util.event('lay-demoTransferActive', {
+    getData: function(othis){
+        var bl=document.getElementById('sence_data');
+        var tran=document.getElementById('test7');
+        if(bl.style.display=='none'){
+            bl.style.display='block';
+            tran.style.display='none';
+        }else{
+            bl.style.display='none';
+            tran.style.display='block';
+        }
+      var getData = transfer.getData('key123'); //获取右侧数据
+      layer.alert(JSON.stringify(getData));
+      for(var i=0;i<getData.length;i++){
+          var tr=$('table#table_info');
+          var html='';
+          html=html+'<tr style="height:200px" class="dam"><td  style="width:5%">'+(i+1).toString()+'</td>';
+          html=html+'<td style="width:20%;word-wrap:break-word;" class="dam">'+getData[i].title+'</td>';
+          html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td>';
+          html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td></tr>';
+          tr.append(html);
+          {#var create_tr=document.createElement('tr');#}
+          {#//一共4列，所以写死的4列  执行顺序  接口名称   中间变量  备注#}
+          {#create_tr.setAttribute("class","info");#}
+          {##}
+          {#var order_id=document.createElement('td');#}
+          {#order_id.innerHTML='<b>'+(i+1).toString()+'</b>';#}
+          {#order_id.setAttribute("style",'width:5%');#}
+          {#create_tr.appendChild(order_id);#}
+          {##}
+          {#var inter_name=document.createElement('td');#}
+          {#inter_name.innerHTML=getData[i].title;#}
+          {#create_tr.appendChild(inter_name);#}
+          {##}
+          {#var interm=document.createElement('td');#}
+          {##}
+          {#interm.innerHTML="<input type='text'>";#}
+          {#create_tr.appendChild(interm);#}
+          {##}
+          {#var remarks=document.createElement('td');#}
+          {#remarks.innerHTML="<input type='text'>";#}
+          {#create_tr.appendChild(remarks);#}
+          {##}
+          {#var tb=document.getElementById("table_info");#}
+          {##}
+          {#tb.appendChild(create_tr);#}
+      }
+      console.log("得到的d是："+d.toString());
+    }
+    ,reload:function(){
+      //实例重载
+      transfer.reload('key123', {
+        title: ['文人', '喜欢的文人']
+        ,value: ['2', '5', '9']
+        ,showSearch: true
+      })
+    }
+  });
 
-
+});
 </script>
-
 
 {% endblock %}

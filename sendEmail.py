@@ -26,10 +26,10 @@ def send_email(receivers= ['2766905938@qq.com'], file_names=[], test_result=0):
 
     main_msg = email.MIMEMultipart.MIMEMultipart()
     #message = MIMEText('附件是本次自动化构建的报告，请注意查收 \n\n', 'plain', 'utf-8')
-    message = MIMEText('Please see the enclosure，it is the auto test report。 \n\n', 'plain', 'utf-8')
+    message = MIMEText('附件中为测试详细报告。 \n\n', 'plain', 'utf-8')
     main_msg.attach(message)
-    print reciverstr
-    result = MIMEText('result： '+reciverstr, 'plain', 'utf-8')
+    #print reciverstr
+    result = MIMEText('测试最终结果： '+reciverstr, 'plain', 'utf-8')
     main_msg.attach(result)
     ## 读入文件内容并格式化
 
@@ -53,7 +53,7 @@ def send_email(receivers= ['2766905938@qq.com'], file_names=[], test_result=0):
     reciverstr = ';'.join(receivers)
     main_msg['To'] = reciverstr
 
-    subject = 'result'
+    subject = '请查收测试结果'
     main_msg['Subject'] = subject
 
 
@@ -104,5 +104,5 @@ def send_email2(SMTP_host, from_account, from_passwd, to_account, subject, conte
     email_client.quit()
 
 if __name__ == '__main__':
-    send_email(file_names=['/Users/anthony/Desktop/log.txt'],test_result=1)#
+    send_email(file_names=['/Users/anthony/Desktop/white.txt'],test_result=1)
     #sendEmail()

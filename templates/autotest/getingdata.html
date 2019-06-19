@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/layui/css/layui.css"  media="all">
+    <style>
+</style>
+</head>
+
+<body>
+
+<div class="layui-btn-container">
+  <button type="button" class="layui-btn" lay-demotransferactive="getData">获取右侧数据</button>
+  <button type="button" class="layui-btn" lay-demotransferactive="reload">重载实例</button>
+</div>
+
+<div id="test7" class="demo-transfer"></div>
+</body>
+
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<!-- 中间点击按钮图标没显示出来没关系  是因为引入的cdn问题  正常下载引入bootstrap.css的话没问题的 -->
+<!-- 此处演示的数据源为一个 用falg去区分在哪个里面 -->
+
+<script src="/static/layui/layui.js" charset="utf-8"></script>
+<script>
+
+//实例调用
+    var geting={
+        hehe:function loadData() {
+        var data3;
+      $.ajax({
+          url: '/api/all_case',
+          type: 'get',
+          async: false,
+          dataType: 'json',
+          success: function (obj) {
+              data3 = JSON.stringify(obj);
+          }
+      });
+      return data3;
+  }};
+
+layui.use(['transfer', 'layer', 'util'], function(){
+  var $ = layui.$
+  ,transfer = layui.transfer
+  ,layer = layui.layer
+  ,util = layui.util;
+
+  //模拟数据
+  var data1 = [
+    {"value": "1", "title": "李白"}
+    ,{"value": "2", "title": "杜甫"}
+    ,{"value": "3", "title": "苏轼"}
+    ,{"value": "4", "title": "李清照"}
+    ,{"value": "5", "title": "鲁迅", "disabled": true}
+    ,{"value": "6", "title": "巴金"}
+    ,{"value": "7", "title": "冰心"}
+    ,{"value": "8", "title": "矛盾"}
+    ,{"value": "9", "title": "贤心"}
+  ]
+
+  ,data2 = [
+    {"value": "1", "title": "瓦罐汤"}
+    ,{"value": "2", "title": "油酥饼"}
+    ,{"value": "3", "title": "炸酱面"}
+    ,{"value": "4", "title": "串串香", "disabled": true}
+    ,{"value": "5", "title": "豆腐脑"}
+    ,{"value": "6", "title": "驴打滚"}
+    ,{"value": "7", "title": "北京烤鸭"}
+    ,{"value": "8", "title": "烤冷面"}
+    ,{"value": "9", "title": "毛血旺", "disabled": true}
+    ,{"value": "10", "title": "肉夹馍"}
+    ,{"value": "11", "title": "臊子面"}
+    ,{"value": "12", "title": "凉皮"}
+    ,{"value": "13", "title": "羊肉泡馍"}
+    ,{"value": "14", "title": "冰糖葫芦", "disabled": true}
+    ,{"value": "15", "title": "狼牙土豆"}
+  ];
+
+
+
+  transfer.render({
+    elem: '#test7'
+    ,data:JSON.parse(geting.hehe()) //ps：这里很关键！！  传过来的数据是字符串，要转成object对象
+    ,id: 'key123' //定义唯一索引
+  });
+  //批量办法定事件
+  util.event('lay-demoTransferActive', {
+    getData: function(othis){
+      var getData = transfer.getData('key123'); //获取右侧数据
+      layer.alert(JSON.stringify(getData));
+    }
+    ,reload:function(){
+      //实例重载
+      transfer.reload('key123', {
+        title: ['文人', '喜欢的文人']
+        ,value: ['2', '5', '9']
+        ,showSearch: true
+      })
+    }
+  });
+
+});
+</script>

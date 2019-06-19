@@ -1,5 +1,5 @@
 #-*- coding= utf-8 -*-
-import os
+import os,json
 from itsdangerous import Signer,TimestampSigner
 from flask import Flask,redirect,url_for,request,render_template,current_app
 from flask_script import Manager,Server
@@ -58,6 +58,12 @@ def task():
 @app.route('/task_list')
 def task_list():
     return "task_list"
+
+@app.route('/test1')
+def test1():
+    return render_template('autotest/getingdata.html')
+
+
 @app.route('/hehe/<test>')
 def hh(test):
     conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='chendaqian', db='test1')

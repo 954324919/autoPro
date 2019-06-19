@@ -76,23 +76,26 @@ $(function(){
 
 });
 //创建穿梭框
+
     $('#transferContainer').transfer({
-    titles: ['所有可选接口列表', '已选择的接口列表'],
-    search: true,
-    uniqueId: "importUnitId",//唯一id
-    dataSource: null,
-    maxSelect: 6,
-    diffKey: 'flag',
-    unselectColumns: [{
-            field: 'flag',
-            checkbox: true
-        },
-        {
-            field: 'importUnitName',
-            title: '选择所有接口'
-        }
-    ]
-});
+
+            titles: ['所有可选接口列表', '已选择的接口列表'],
+            search: true,
+            uniqueId: "importUnitId",//唯一id
+
+            dataSource: null,
+            maxSelect: 6,
+            diffKey: 'flag',
+            unselectColumns: [{
+                    field: 'flag',
+                    checkbox: true
+                },
+                {
+                    field: 'importUnitName',
+                    title: '选择所有接口'
+                }
+            ]
+        });
     });
 
 

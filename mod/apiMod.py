@@ -109,6 +109,25 @@ def case_list():
     dict_items['datas']=all_list
     #print dict_items
     return jsonify(dict_items)
+
+#穿梭框中所有的接口
+@api.route('/all_case',methods=['GET'])
+def all_case():
+    select="select * from inter_info order by id desc"
+    all_cases=[]
+
+    result=db_util.select_sql(select)
+    for i in result:
+        id=i[0]   #表示接口id
+        sql="select url_name from inter_info where id='"+str(id)+"'"
+        url_name=db_util.one_sql(sql)[0]
+
+        get_item={}
+        get_item["value"]=str(id)
+        get_item["title"]=str(url_name)
+        all_cases.append(get_item)
+    # print all_cases
+    return json.dumps(all_cases)
 #按照项目、版本、模块查询的接口列表
 @api.route('/case_select_list',methods=['GET'])
 def case_select_list():
