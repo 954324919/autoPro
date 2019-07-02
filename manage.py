@@ -52,9 +52,12 @@ def inter_list():
 @app.route('/add_scene')
 def add_scene():
     return render_template('autotest/add_scene1.html')
+@app.route('/scene_list')
+def scene_list():
+    return render_template('autotest/api_scene.html')
 @app.route('/task')
 def task():
-    return "task"
+    return render_template('autotest/task_add.html')
 @app.route('/task_list')
 def task_list():
     return "task_list"
@@ -62,7 +65,6 @@ def task_list():
 @app.route('/test1')
 def test1():
     return render_template('autotest/getingdata.html')
-
 
 @app.route('/hehe/<test>')
 def hh(test):

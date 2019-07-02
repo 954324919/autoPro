@@ -108,8 +108,8 @@ def one_sql(sql):
     cursor.execute(sql)
     result=cursor.fetchone()
     conn.commit()
-    #cursor.close()
-    #conn.close()
+    # cursor.close()
+    # conn.close()
     return result
 
 # h=select_sql("select * from projects")[2][2]

@@ -126,8 +126,33 @@ def all_case():
         get_item["value"]=str(id)
         get_item["title"]=str(url_name)
         all_cases.append(get_item)
+    s={"code":0}
+    all_cases.append(s)
     # print all_cases
     return json.dumps(all_cases)
+#所有接口
+@api.route('/get_case',methods=['GET'])
+def get_case():
+    mydict={}
+    mydict["code"]=0
+
+    select="select * from inter_info order by id desc"
+    all_cases=[]
+
+    result=db_util.select_sql(select)
+    for i in result:
+        id=i[0]   #表示接口id
+        sql="select url_name from inter_info where id='"+str(id)+"'"
+        url_name=db_util.one_sql(sql)[0]
+
+        get_item={}
+        get_item["value"]=str(id)
+        get_item["title"]=str(url_name)
+        all_cases.append(get_item)
+    mydict["data"]=all_cases
+
+    # print all_cases
+    return json.dumps(mydict)
 #按照项目、版本、模块查询的接口列表
 @api.route('/case_select_list',methods=['GET'])
 def case_select_list():
@@ -150,3 +175,64 @@ def case_select_list():
     dict_items['datas']=all_list
     return jsonify(dict_items)
 
+#添加场景
+#json 格式：{"scene_name": "这是场景的名称","datas": [{"inter_id": "接口id","get_param_data": "中间变量","expect_res": "这是要校验的数据内容","res_assert_type": "响应数据校验方式","notes": "备注信息"}, {"inter_id": "接口id","get_param_data": "中间变量","expect_res": "这是要校验的数据内容","res_assert_type": "响应数据校验方式","notes": "备注信息"}]}
+@api.route('/create_scene',methods=['POST'])
+def create_scene():
+    if request.method=='POST':
+        data = request.get_data()  # 获取post数据
+        data_result=json.loads(data.decode('utf-8'))
+        scene_name=data_result['scene_name']
+        scene_item=data_result['datas']
+        db_util.exec_sql("insert into scene_info (scene_name) values ('"+scene_name+"')")
+        scene_id=db_util.get_one()
+
+        for i in range(0,len(scene_item)):
+            inter_id=scene_item[i]['inter_id']
+            scene_item_id=scene_item[i]["scene_item_id"]
+            get_param_data=scene_item[i]["get_param_data"]
+            expect_res=scene_item[i]['expect_res']
+            res_assert_type=scene_item[i]['res_assert_type']
+            notes=scene_item[i]['notes']
+            db_util.exec_sql("insert into scene_info_item (inter_id,get_param_data,expect_res,res_assert_type,notes,scene_info_id,scene_item_id)"
+                             " values ('"+str(inter_id)+"','"+get_param_data+"','"+expect_res+"','"+res_assert_type+"','"+notes+"','"+str(scene_id)+"','"+str(scene_item_id)+   "')")
+        return "success"
+
+#查询出全部场景
+@api.route('/scene_list',methods=['GET'])
+def scene_list():
+    dict_items = {"datas": {}}
+    all_list={"scene_list":[]} #这种类型创建列表
+    select="select * from scene_info order by id desc"
+
+
+    result=db_util.select_sql(select)
+    for i in result:
+        get_item={}
+        get_item["id"]=i[0]
+        get_item["scene_name"]=i[1]
+        all_list['scene_list'].append(get_item)
+
+    dict_items['datas']=all_list
+    #print dict_items
+    return jsonify(dict_items)
+
+#查询出全部场景
+@api.route('/get_scene',methods=['GET'])
+def get_scene():
+    mydict={}
+    mydict['code']=0
+    li=[]
+    select="select * from scene_info order by id desc"
+
+
+    result=db_util.select_sql(select)
+    for i in result:
+        get_item={}
+        get_item["id"]=i[0]
+        get_item["scene_name"]=i[1]
+        li.append(get_item)
+
+    mydict["data"]=li
+    #print dict_items
+    return jsonify(mydict)

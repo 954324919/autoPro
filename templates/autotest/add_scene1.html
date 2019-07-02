@@ -87,15 +87,19 @@
 <!--layui穿梭框-->
 
 <div class="row" id="sence_data" style="display:none">
-    <div class="col-md-1"></div>
-    输入场景名称：<input type="text" id="scene_name">
+
+<div class="col-md-1"></div>
     <div style="height:540px;overflow-y:auto;overflow-x:hidden;" id='d'>
+        输入场景名称：<input type="text" id="scene_name">
       <table class="table table-condensed table-bordered" id="table_info" style="background:#FFF;table-layout:fixed;margin:0px;">
 
           <tr class="info" id='case_params'>
               <td style="width:5%"><b>执行顺序</b></td>
+              <td style="width:5%"><b>接口id</b></td>
                 <td style="width:10%"><b>接口名称</b></td>
-                <td style="width:10%"><b>中间变量 (多个,分隔)</b></td>
+                <td style="width:10%"><b>中间变量 (json格式)</b></td>
+              <td style="width:10%"><b>响应校验方式</b></td>
+              <td style="width:10%"><b>响应校验数据</b></td>
                 <td style="width:10%"><b>备注</b></td>
 
           </tr>
@@ -135,23 +139,7 @@
 <script src="/static/layui/layui.js" charset="utf-8"></script>
 <script>
 
-    //保存场景
-    function submit_scene() {
-        var my_table=document.getElementById("table_info");
-        var data=[];
-        var my_rows=my_table.rows.length;
-        for(var i=1;i<my_rows;i++){
-            var scene_item_id=my_table.rows[i].cells[0].innerHTML;
-            var inter_name=my_table.rows[i].cells[1].innerHTML;
-            var text1=my_table.rows[i].cells[2].getElementsByTagName("textarea");
-            var interm=text1[0].value;
-            var 
-            alert(interm);
-            //for(var j=1;j<my_table.rows[i].cells.length; j++){
-            //    alert(my_table.rows[i].cells[j].innerHTML);
-            //}
-        }
-    }
+
     //实例调用
     var geting={
         hehe:function loadData() {
@@ -167,7 +155,6 @@
       });
       return data3;
   }};
-
 layui.use(['transfer', 'layer', 'util'], function(){
   var $ = layui.$
   ,transfer = layui.transfer
@@ -214,6 +201,7 @@ layui.use(['transfer', 'layer', 'util'], function(){
     ,showSearch: true
     ,width:450
   });
+
   //批量办法定事件
   util.event('lay-demoTransferActive', {
     getData: function(othis){
@@ -226,13 +214,17 @@ layui.use(['transfer', 'layer', 'util'], function(){
             bl.style.display='none';
             tran.style.display='block';
         }
-      var getData = transfer.getData('key123'); //获取右侧数据
-      layer.alert(JSON.stringify(getData));
-      for(var i=0;i<getData.length;i++){
+
+        var dataTransfer = transfer.getData('key123'); //获取右侧数据
+      layer.alert(JSON.stringify(dataTransfer));
+      for(var i=0;i<dataTransfer.length;i++){
           var tr=$('table#table_info');
           var html='';
           html=html+'<tr style="height:200px" class="dam"><td  style="width:5%">'+(i+1).toString()+'</td>';
-          html=html+'<td style="width:20%;word-wrap:break-word;" class="dam">'+getData[i].title+'</td>';
+          html=html+'<td style="width:5%;word-wrap:break-word;" class="dam">'+dataTransfer[i].value+'</td>';
+          html=html+'<td style="width:20%;word-wrap:break-word;" class="dam">'+dataTransfer[i].title+'</td>';
+          html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td>';
+          html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td>';
           html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td>';
           html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td></tr>';
           tr.append(html);
@@ -275,6 +267,46 @@ layui.use(['transfer', 'layer', 'util'], function(){
   });
 
 });
+
+//保存场景
+    function submit_scene() {
+        var my_table=document.getElementById("table_info");
+        var data=[];
+        var my_rows=my_table.rows.length;
+
+        var datas=[];
+        var scene_name=document.getElementById("scene_name").value;
+        //var getData = dataTransfer;//transfer.getData('key123'); //获取右侧数据
+
+        for(var i=1;i<my_rows;i++){
+
+            var scene_item_id=my_table.rows[i].cells[0].innerHTML;
+            var inter_id=my_table.rows[i].cells[1].innerHTML;
+            var inter_name=my_table.rows[i].cells[2].innerHTML;
+            var interm=my_table.rows[i].cells[3].getElementsByTagName("textarea")[0].value; //中间变量的值
+            var res_assert_type=my_table.rows[i].cells[4].getElementsByTagName("textarea")[0].value; //响应校验方式
+            var expect_res=my_table.rows[i].cells[5].getElementsByTagName("textarea")[0].value;  //预期响应
+            var notes=my_table.rows[i].cells[6].getElementsByTagName("textarea")[0].value;  //备注
+
+            datas.push({"inter_id":inter_id,"scene_item_id":scene_item_id,"get_param_data":interm,"expect_res":expect_res,"res_assert_type":res_assert_type,"notes":notes});
+
+            //for(var j=1;j<my_table.rows[i].cells.length; j++){
+            //    alert(my_table.rows[i].cells[j].innerHTML);
+            //}
+        }
+        var scene='{"scene_name":"'+scene_name+'","datas":'+JSON.stringify(datas)+'}';
+
+        console.log(scene);
+        $.ajax({
+            type:"POST",
+            url:"/api/create_scene",
+            data:scene,
+            contentType:"application/json",
+            success: function(data){
+                alert(data.toString());
+            }
+        });
+    }
 </script>
 
 {% endblock %}

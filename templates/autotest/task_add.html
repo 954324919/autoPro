@@ -1,0 +1,91 @@
+{% extends "base1.html" %}
+{% block head %}
+<link href="/static/less/apimodel.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/layui/css/layui.css"  media="all">
+{% endblock %}
+
+
+{% block body_header %}
+<h2 class="page-header" id = "api-menu-project-id" data-id="10010-1" data-url="/apiZhdq">创建任务</h2>
+{% endblock %}
+{% block body %}
+<div class="panel-body">
+    <div class="table-responsive">
+        <p>
+            <button type="button" class="btn btn-info" id="add-api-link">新增</button>
+            <button type="button" class="btn btn-info" id="del-api-link">删除</button>
+        </p>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>
+                    <input type="checkbox">全选
+                </th>
+                <th>id</th>
+                <th>接口名称</th>
+            </tr>
+            </thead>
+            <tbody id="table-tbody">
+
+            </tbody>
+        </table>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>
+                    <input type="checkbox">全选
+                </th>
+                <th>id</th>
+                <th>场景名称</th>
+            </tr>
+            </thead>
+            <tbody id="table-scene">
+
+            </tbody>
+        </table>
+        <p>
+            <button type="button" class="btn btn-danger" id="create_task">运行</button>
+        </p>
+        <table class="layui-hide" id="layui_table"></table>
+        <table class="layui-hide" id="layui_scene"></table>
+    </div>
+    <!-- /.table-responsive -->
+</div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+{#<script src="/static/js/api_zhdq.js"></script>#}
+<script src="/static/js/task_list.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <script>
+layui.use('table', function(){
+  var table = layui.table;
+
+  table.render({
+    elem: '#layui_table'
+    ,url:'/api/get_case'
+    ,cols: [[
+      {type:'checkbox'}
+      ,{field:'value', width:120, title: 'ID', sort: true}
+      ,{field:'title', width:120, title: '职业'}
+    ]]
+    ,page: true
+  });
+});
+
+layui.use('table', function(){
+  var table = layui.table;
+
+  table.render({
+    elem: '#layui_scene'
+    ,url:'/api/get_scene'
+    ,cols: [[
+      {type:'checkbox'}
+      ,{field:'id', width:120, title: 'ID', sort: true}
+      ,{field:'scene_name', width:120, title: '职业'}
+    ]]
+    ,page: true
+  });
+});
+</script>
+{% endblock %}
