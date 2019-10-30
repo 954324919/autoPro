@@ -22,7 +22,7 @@ six==1.10.0
 tornado==4.3
 Twisted==16.1.1
 visitor==0.1.2
-Werkzeug==0.11.9
+Werkzeug==0.15.3
 WTForms==2.1
 requests==2.10.0
 zope.interface==4.1.3
