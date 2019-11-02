@@ -1,0 +1,183 @@
+{% extends "base1.html" %}
+{% block head %}
+<link href="/static/less/apimodel.css" rel="stylesheet">
+{#    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">#}
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/static/css/scene.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/layui/css/layui.css"  media="all">
+{% endblock %}
+{% block window %}
+
+{% endblock %}
+
+
+{% block body_header %}
+<h2 class="page-header" id = "api-menu-project-id" data-id="10010-1">新增场景</h2>
+{% endblock %}
+{% block body %}
+
+    <!--layui 穿梭框-->
+    <div class="row">
+    <div class="col-md-1"></div><div id="test7" class="demo-transfer" style="display:block"></div>
+
+    <div class="col-md-1">
+    </div>
+<div class="layui-btn-container">
+  <button type="button" class="layui-btn" lay-demotransferactive="getData">获取右侧数据</button>
+  <button type="button" class="layui-btn" lay-demotransferactive="reload">重载实例</button>
+</div>
+
+
+    </div>
+<!--layui穿梭框-->
+
+<div class="row" id="sence_data" style="display:none">
+<div class="col-md-1"></div>
+    <div style="height:540px;overflow-y:auto;overflow-x:hidden;" id='d'>
+        输入场景名称：<input type="text" id="scene_name">
+      <table class="table table-condensed table-bordered" id="table_info" style="background:#FFF;table-layout:fixed;margin:0px;">
+
+          <tr class="info" id='case_params'>
+              <td style="width:5%"><b>执行顺序</b></td>
+              <td style="width:5%"><b>接口id</b></td>
+                <td style="width:10%"><b>接口名称</b></td>
+                <td style="width:10%"><b>中间变量 (json格式)</b></td>
+              <td style="width:10%"><b>响应校验方式</b></td>
+              <td style="width:10%"><b>响应校验数据</b></td>
+                <td style="width:10%"><b>备注</b></td>
+
+          </tr>
+      </table>
+        <button class="btn btn-danger" onclick="submit_scene()">提交</button>
+    </div>
+    </div>
+
+</div>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+<script src="/static/suite.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+{#<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="static/js/Transfer.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="/static/layui/layui.js" charset="utf-8"></script>
+<script>
+
+
+    //实例调用
+    var geting={
+        hehe:function loadData() {
+        var data3;
+      $.ajax({
+          url: '/api/all_case',
+          type: 'get',
+          async: false,
+          dataType: 'json',
+          success: function (obj) {
+              data3 = JSON.stringify(obj);
+          }
+      });
+      return data3;
+  }};
+layui.use(['transfer', 'layer', 'util'], function(){
+  var $ = layui.$
+  ,transfer = layui.transfer
+  ,layer = layui.layer
+  ,util = layui.util;
+
+
+
+  transfer.render({
+    elem: '#test7'
+    ,data:JSON.parse(geting.hehe()) //ps：这里很关键！！  传过来的数据是字符串，要转成object对象
+    ,id: 'key123' //定义唯一索引
+    ,showSearch: true
+    ,width:450
+  });
+
+  //批量办法定事件
+  util.event('lay-demoTransferActive', {
+    getData: function(othis){
+        var bl=document.getElementById('sence_data');
+        var tran=document.getElementById('test7');
+        if(bl.style.display=='none'){
+            bl.style.display='block';
+            tran.style.display='none';
+        }else{
+            bl.style.display='none';
+            tran.style.display='block';
+        }
+
+        var dataTransfer = transfer.getData('key123'); //获取右侧数据
+      layer.alert(JSON.stringify(dataTransfer));
+      for(var i=0;i<dataTransfer.length;i++){
+          var tr=$('table#table_info');
+          var html='';
+          html=html+'<tr style="height:200px" class="dam"><td  style="width:5%">'+(i+1).toString()+'</td>';
+          html=html+'<td style="width:5%;word-wrap:break-word;" class="dam">'+dataTransfer[i].value+'</td>';
+          html=html+'<td style="width:20%;word-wrap:break-word;" class="dam">'+dataTransfer[i].title+'</td>';
+          html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td>';
+          html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td>';
+          html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td>';
+          html=html+'<td style="width:20%;margin: 80px 0px;word-wrap:break-word;" class="dam"><textarea style="width:100%;height:200px"></textarea></td></tr>';
+          tr.append(html);
+      }
+      console.log("得到的d是："+d.toString());
+    }
+    ,reload:function(){
+      //实例重载
+      transfer.reload('key123', {
+        title: ['文人', '喜欢的文人']
+        ,value: ['2', '5', '9']
+        ,showSearch: true
+      })
+    }
+  });
+
+});
+
+//保存场景
+    function submit_scene() {
+        var my_table=document.getElementById("table_info");
+        var data=[];
+        var my_rows=my_table.rows.length;
+
+        var datas=[];
+        var scene_name=document.getElementById("scene_name").value;
+        //var getData = dataTransfer;//transfer.getData('key123'); //获取右侧数据
+
+        for(var i=1;i<my_rows;i++){
+
+            var scene_item_id=my_table.rows[i].cells[0].innerHTML;
+            var inter_id=my_table.rows[i].cells[1].innerHTML;
+            var inter_name=my_table.rows[i].cells[2].innerHTML;
+            var interm=my_table.rows[i].cells[3].getElementsByTagName("textarea")[0].value; //中间变量的值
+            var res_assert_type=my_table.rows[i].cells[4].getElementsByTagName("textarea")[0].value; //响应校验方式
+            var expect_res=my_table.rows[i].cells[5].getElementsByTagName("textarea")[0].value;  //预期响应
+            var notes=my_table.rows[i].cells[6].getElementsByTagName("textarea")[0].value;  //备注
+
+            datas.push({"inter_id":inter_id,"scene_item_id":scene_item_id,"get_param_data":interm,"expect_res":expect_res,"res_assert_type":res_assert_type,"notes":notes});
+
+        }
+        var scene='{"scene_name":"'+scene_name+'","datas":'+JSON.stringify(datas)+'}';
+
+        console.log(scene);
+        $.ajax({
+            type:"POST",
+            url:"/api/create_scene",
+            data:scene,
+            contentType:"application/json",
+            success: function(data){
+                alert(data.toString());
+            }
+        });
+    }
+</script>
+
+{% endblock %}

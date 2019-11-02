@@ -1,7 +1,7 @@
 #-*- coding= utf-8 -*-
 import os,json
 from itsdangerous import Signer,TimestampSigner
-from flask import Flask,redirect,url_for,request,render_template,current_app
+from flask import Flask,redirect,url_for,request,render_template,current_app,make_response,session
 from flask_script import Manager,Server
 from create_app import create_app
 from config import DevelopmentConfig
@@ -55,16 +55,26 @@ def add_scene():
 @app.route('/scene_list')
 def scene_list():
     return render_template('autotest/api_scene.html')
+@app.route('/scene_info',methods=['GET','POST'])
+def scene_info():
+    scene_id=request.args.get("scene_id")
+    return render_template('autotest/scene_info.html',scene_id=scene_id)
 @app.route('/task')
 def task():
-    return render_template('autotest/task_add.html')
+    return render_template('autotest/create_task.html')
+
 @app.route('/task_list')
 def task_list():
     return "task_list"
 
 @app.route('/test1')
 def test1():
-    return render_template('autotest/getingdata.html')
+    res=make_response(render_template('autotest/getingdata.html'))
+    res.set_cookie('username','root',max_age=100)
+    res.set_cookie('password','root')
+    session["user"]="hao"
+    return res
+
 
 @app.route('/hehe/<test>')
 def hh(test):

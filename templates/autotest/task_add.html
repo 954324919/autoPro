@@ -57,6 +57,7 @@
 {#<script src="/static/js/api_zhdq.js"></script>#}
 <script src="/static/js/task_list.js"></script>
     <script src="/static/layui/layui.js"></script>
+    <script src="/static/layui/layui.all.js"></script>
     <script>
 layui.use('table', function(){
   var table = layui.table;
@@ -67,7 +68,7 @@ layui.use('table', function(){
     ,cols: [[
       {type:'checkbox'}
       ,{field:'value', width:120, title: 'ID', sort: true}
-      ,{field:'title', width:120, title: '职业'}
+      ,{field:'title', width:120, title: '接口名称'}
     ]]
     ,page: true
   });
@@ -75,16 +76,19 @@ layui.use('table', function(){
 
 layui.use('table', function(){
   var table = layui.table;
-
+  var laypage=layui.laypage;
   table.render({
     elem: '#layui_scene'
     ,url:'/api/get_scene'
     ,cols: [[
       {type:'checkbox'}
       ,{field:'id', width:120, title: 'ID', sort: true}
-      ,{field:'scene_name', width:120, title: '职业'}
+      ,{field:'scene_name', width:120, title: '场景名称'}
     ]]
-    ,page: true
+      ,limit: 10
+      ,limits: [10,20]
+      ,page: true
+
   });
 });
 </script>

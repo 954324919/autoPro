@@ -43,5 +43,7 @@ $(function () {
 
 });
 $('#create_task').on('click', function () {
-        alert("test");
+        var a=layui.table.checkStatus("layui_scene").data;
+        json_data=JSON.stringify(a);
+        layer.alert(json_data);
     });

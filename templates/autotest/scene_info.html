@@ -1,0 +1,56 @@
+{% extends "base1.html" %}
+{% block head %}
+<link href="/static/less/apimodel.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/layui/css/layui.css"  media="all">
+{% endblock %}
+
+
+{% block body_header %}
+<h2 class="page-header" id = "api-menu-project-id" data-id="10010-1" data-url="/apiZhdq">场景详情</h2>
+{% endblock %}
+{% block body %}
+<div class="panel-body">
+    <div class="table-responsive">
+        <p>
+            <button type="button" class="btn btn-info" id="add-api-link">新增</button>
+            <button type="button" class="btn btn-info" id="del-api-link">删除</button>
+        </p>
+        <table class="layui-table" lay-data="{url:'/api/scene_info/?scene_id={{ scene_id }}',id:'test1'}" lay-filter="test1">
+            <thead>
+            <tr>
+                <th lay-data="{field:'scene_item_id'}">序号</th>
+                <th lay-data="{field:'inter_id'}">接口id</th>
+                <th lay-data="{field:'url_name',edit:'text'}">接口名称</th>
+
+                <th lay-data="{field:'get_param_data',edit:'text'}">中间变量</th>
+                <th lay-data="{field:'res_assert_type',edit:'text'}">响应校验方式</th>
+                <th lay-data="{field:'except_res',edit:'text'}">响应校验数据</th>
+                <th lay-data="{field:'notes',edit:'text'}">备注</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <!-- /.table-responsive -->
+</div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+{#<script src="/static/js/api_zhdq.js"></script>#}
+    <script src="/static/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+
+
+
+  //监听单元格编辑
+  table.on('edit(test1)', function(obj) {
+      var value = obj.value //得到修改后的值
+          , data = obj.data //得到所在行所有键值
+          , field = obj.field; //得到字段
+
+      layer.msg('[ID: '+ data.inter_id +'] ' + field + ' 字段更改为：'+ value);
+  });
+});
+</script>
+{% endblock %}

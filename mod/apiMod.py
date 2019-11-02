@@ -2,7 +2,7 @@
 from . import api
 from modules.utils import db_util
 from flask import request,jsonify
-import json,requests
+import json,requests,xlrd
 #获取项目信息
 @api.route('/')
 def index():
@@ -150,6 +150,7 @@ def get_case():
         get_item["title"]=str(url_name)
         all_cases.append(get_item)
     mydict["data"]=all_cases
+    mydict["count"]=len(all_cases)
 
     # print all_cases
     return json.dumps(mydict)
@@ -220,11 +221,19 @@ def scene_list():
 #查询出全部场景
 @api.route('/get_scene',methods=['GET'])
 def get_scene():
+    page=int(request.args.get("page"))
+    limit=int(request.args.get("limit"))
+
     mydict={}
     mydict['code']=0
+    mydict["msg"] = ""
     li=[]
-    select="select * from scene_info order by id desc"
+    cos=(page-1)*limit
+    select = "select * from scene_info order by id desc"
+    result = db_util.select_sql(select)
+    mydict["count"] = str(len(result))
 
+    select="select * from scene_info order by id desc limit "+str(cos)+","+str(limit)
 
     result=db_util.select_sql(select)
     for i in result:
@@ -232,7 +241,41 @@ def get_scene():
         get_item["id"]=i[0]
         get_item["scene_name"]=i[1]
         li.append(get_item)
+    mydict["data"] = li
 
-    mydict["data"]=li
     #print dict_items
     return jsonify(mydict)
+#场景详情页面
+@api.route('/scene_info/')
+def my_scene_info():
+    scene_id = int(request.args.get("scene_id")) #获取到请求的scene id 根据scene_id获取到数据
+
+    sql="select * from scene_info_item where scene_info_id="+str(scene_id)
+    scene_sql = "select scene_name from scene_info where id=" + str(scene_id)
+
+    res1=db_util.one_sql(scene_sql)
+    scene_name=res1[0]
+    result=db_util.select_sql(sql)
+    li=[]
+    for i in result:
+
+        get_item={}
+
+        inter_info_sql="select * from inter_info where id="+str(i[1]) #i[1]对应scene_info_item中的inter_id
+        inter_info = db_util.one_sql(inter_info_sql)
+
+        get_item["inter_id"]=inter_info[0]
+        get_item["url_name"]=inter_info[3]
+        get_item["scene_item_id"]=i[7]
+        get_item["get_param_data"]=i[2]
+        get_item["except_res"]=i[3]
+        get_item["res_assert_type"]=i[4]
+        get_item["notes'"]=i[5]
+        li.append(get_item)
+
+    json_item={}
+    json_item["code"]=0
+    json_item["scene_name"]=scene_name
+    json_item["scene_id"]=str(scene_id)
+    json_item["data"]=li
+    return jsonify(json_item)

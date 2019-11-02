@@ -21,8 +21,17 @@ class WXMessage(object):
       cook=dict(mvp_token='123')
       requests.get("http://api-liuhaibo.office-public.tengyue360.com/yzs/api/promo/common/participate",params=data,)
 
-
+def is_letter(letter):
+    if (letter.isalpha()):
+        return True
+    else:
+        return False
 
 
 if __name__ == "__main__":
-    WXMessage().token_give()
+    # WXMessage().token_give()
+
+
+    a = is_letter("好")
+    print(a)
+    print("测试一下".isalpha())

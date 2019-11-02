@@ -16,7 +16,7 @@ $(function () {
                             "<td><input type='checkbox'></td>" +
                             "<td>"+list[i].id+"</td>" +
                             "<td>"+list[i].scene_name+"</td>" +
-                            "<td><a> 编辑</a><a> 复制</a><a> 删除</a></td>" +
+                            "<td><a> 编辑</a><a href='/scene_info?scene_id="+list[i].id.toString()+"'> 查看</a><a> 删除</a></td>" +
                             "</tr>"
                         document.getElementById("table-tbody").innerHTML=html;
                     }
