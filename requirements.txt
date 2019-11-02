@@ -20,7 +20,7 @@ PyYAML==3.11
 singledispatch==3.4.0.3
 six==1.10.0
 tornado==4.3
-Twisted==16.1.1
+Twisted==19.7.0
 visitor==0.1.2
 Werkzeug==0.11.9
 WTForms==2.1
