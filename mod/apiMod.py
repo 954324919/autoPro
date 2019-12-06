@@ -1,7 +1,7 @@
 #-*- coding= utf-8 -*-
 from . import api
 from modules.utils import db_util
-from flask import request,jsonify
+from flask import request,jsonify,url_for,redirect
 import json,requests,xlrd
 #获取项目信息
 @api.route('/')
@@ -268,7 +268,7 @@ def my_scene_info():
         get_item["url_name"]=inter_info[3]
         get_item["scene_item_id"]=i[7]
         get_item["get_param_data"]=i[2]
-        get_item["except_res"]=i[3]
+        get_item["expect_res"]=i[3]
         get_item["res_assert_type"]=i[4]
         get_item["notes'"]=i[5]
         li.append(get_item)
@@ -279,3 +279,32 @@ def my_scene_info():
     json_item["scene_id"]=str(scene_id)
     json_item["data"]=li
     return jsonify(json_item)
+#编辑场景
+@api.route('/edit_scene',methods=['POST'])
+#{"data":[{"value":"res1sd","field":"except_res","inter_id":3},{"value":"resreg","field":"res_assert_type","inter_id":3},{"value":"res1sdda","field":"except_res","inter_id":3}],"scene_id":13}
+def edit_scene():
+    if request.method=="POST":
+        data = request.get_data()  # 获取post数据
+        data_result = json.loads(data.decode('utf-8'))
+        scene_id = data_result['scene_id']
+        data=data_result["data"]
+        for i in range(len(data)):
+            value=data[i]["value"]  #需要进行更新的value值
+            field=data[i]["field"]  #更新的字段值
+            inter_id=data[i]["inter_id"]  #接口id
+
+            exe_sql="update scene_info_item set "+field+"='"+value + "' where (scene_info_id="+str(scene_id)+" and inter_id="+str(inter_id)+");"
+
+            result=db_util.one_sql(exe_sql)
+
+        return "success"
+@api.route('/del_scene',methods=['GET'])
+def del_scene():
+    scene_id = request.args.get("scene_id")
+    del_item_sql="delete from scene_info_item where scene_info_id="+scene_id
+    del_scene_sql="delete from scene_info where id="+scene_id
+
+    res1=db_util.exec_sql(del_item_sql)
+    res2=db_util.exec_sql(del_scene_sql)
+
+    return redirect(url_for("scene_list"))
