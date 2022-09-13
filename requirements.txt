@@ -31,7 +31,7 @@ Flask-SQLAlchemy==2.1
 celery==3.1.24
 msgpack-python==0.4.8
 babel==2.3.4
-flower==0.9.1
+flower==1.2.0
 futures==3.0.5
 tornado==4.3
 PyMySQL==0.8.1
