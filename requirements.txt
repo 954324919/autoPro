@@ -1,4 +1,4 @@
-wheel==0.26.0
+wheel==0.38.1
 backports-abc==0.4
 backports.ssl-match-hostname==3.5.0.1
 binaryornot==0.4.0
